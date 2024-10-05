@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Mozaic.PasswordManager.Web.Controllers
 {
-    [Authorize] 
+    [Authorize]
     public class LoginController : Controller
     {
         private readonly AppDbContext _context;
@@ -23,19 +23,17 @@ namespace Mozaic.PasswordManager.Web.Controllers
         public LoginController(AppDbContext context, IOptions<JwtConfig> jwtConfig)
         {
             _context = context;
-            _jwtConfig = jwtConfig.Value; 
+            _jwtConfig = jwtConfig.Value;
         }
 
-       
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Index()
         {
-            return View(new SystemUserViewModel()); 
+            return View(new SystemUserViewModel());
         }
 
-        
-        [AllowAnonymous] 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Index(SystemUserViewModel model)
         {
@@ -56,29 +54,28 @@ namespace Mozaic.PasswordManager.Web.Controllers
 
                         Response.Cookies.Append("JWT", token, new CookieOptions
                         {
-                            HttpOnly = true, 
-                            Secure = HttpContext.Request.IsHttps, 
-                            SameSite = SameSiteMode.Strict 
+                            HttpOnly = true,
+                            Secure = HttpContext.Request.IsHttps,
+                            SameSite = SameSiteMode.Strict
                         });
 
-                        if (user.IsAdmin.GetValueOrDefault()) 
+                        // Redirect based on user role
+                        if (user.IsAdmin.GetValueOrDefault())
                         {
-                            return RedirectToAction("Index", "Register"); 
+                            return RedirectToAction("Hello", "Greeting"); // Admin redirection
                         }
                         else
                         {
-                            return RedirectToAction("MainPage"); 
+                            return RedirectToAction("Hello", "Greeting"); // User redirection
                         }
                     }
                     else
                     {
-                     
                         ModelState.AddModelError(string.Empty, "Invalid password.");
                     }
                 }
                 else
                 {
-                   
                     ModelState.AddModelError(string.Empty, "User not found.");
                 }
             }
@@ -107,7 +104,6 @@ namespace Mozaic.PasswordManager.Web.Controllers
                     expires: DateTime.UtcNow.AddDays(_jwtConfig.ExpireDays),
                     signingCredentials: creds);
 
-                
                 Console.WriteLine($"Generated JWT for user: {user.UserName}");
 
                 return new JwtSecurityTokenHandler().WriteToken(token);
@@ -115,7 +111,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine($"Error generating JWT: {ex.Message}");
-                throw; 
+                throw;
             }
         }
 
@@ -135,7 +131,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 ViewBag.Message = "Welcome User!";
             }
 
-            return View(); 
+            return View();
         }
     }
 }
