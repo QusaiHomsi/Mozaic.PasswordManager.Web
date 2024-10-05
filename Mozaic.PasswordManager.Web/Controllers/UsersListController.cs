@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; // Ensure you have this for EF Core async methods
+using Microsoft.EntityFrameworkCore;
 using Mozaic.PasswordManager.Web.Models.DBEntities;
 using Mozaic.PasswordManager.Web.Models.ViewModels;
-using System.Linq; // Ensure you have this for LINQ queries
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 
@@ -42,7 +42,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound();
             }
 
-            var viewModel = new SystemUserViewModel
+            var viewModel = new EditUserViewModel
             {
                 Id = user.Id,
                 UserName = user.UserName,
@@ -54,7 +54,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
 
         // POST action for saving edited user data
         [HttpPost]
-        public async Task<IActionResult> Edit(SystemUserViewModel model)
+        public async Task<IActionResult> Edit(EditUserViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -73,11 +73,21 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound();
             }
 
+            // Update user properties
             user.UserName = model.UserName;
             user.IsAdmin = model.IsAdmin;
 
-            _context.Update(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log exception details for troubleshooting
+                Console.WriteLine($"An error occurred updating the user: {ex.Message}");
+                return View(model); // Optionally return the view with the model
+            }
 
             return RedirectToAction(nameof(Users)); // Redirect to the Users action
         }
