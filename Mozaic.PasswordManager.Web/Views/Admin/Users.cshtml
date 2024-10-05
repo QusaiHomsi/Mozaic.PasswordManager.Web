@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Mozaic.PasswordManager.Web.Models.ViewModels.SystemUserViewModel>
+@{
+    ViewData["Title"] = "Users List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Capture the current query parameters
+    var searchTerm = Context.Request.Query["username"].ToString();
+    var isAdminQuery = Context.Request.Query["isAdmin"].ToString();
+
+    // Filter the users based on search parameters
+    var filteredUsers = Model.AsQueryable();
+
+    // Filter by username if provided
+    if (!string.IsNullOrEmpty(searchTerm))
+    {
+        filteredUsers = filteredUsers.Where(u => u.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+    }
+
+    // Filter by isAdmin status if provided
+    if (!string.IsNullOrEmpty(isAdminQuery))
+    {
+        bool isAdminBool = bool.Parse(isAdminQuery);
+        filteredUsers = filteredUsers.Where(u => u.IsAdmin == isAdminBool);
+    }
+
+    // Convert to List for further operations
+    var userList = filteredUsers.ToList();
+}
+
+<div class="container mt-4">
+    <h2>System Users</h2>
+
+    <!-- Search Bar -->
+    <div class="mb-3">
+        <form method="get">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by username" name="username" value="@searchTerm" />
+
+                <!-- Radio buttons for Admin Status -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isAdmin" id="allRoles" value="" @(string.IsNullOrEmpty(isAdminQuery) ? "checked" : "") />
+                    <label class="form-check-label" for="allRoles">All Roles</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isAdmin" id="adminRole" value="true" @(isAdminQuery == "true" ? "checked" : "") />
+                    <label class="form-check-label" for="adminRole">Admin</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isAdmin" id="userRole" value="false" @(isAdminQuery == "false" ? "checked" : "") />
+                    <label class="form-check-label" for="userRole">User</label>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Total Results Display -->
+    <div>
+        @if (userList != null && userList.Any())
+        {
+            <p>Total Users: @userList.Count()</p>
+            <p>
+                Showing @userList.Count() results
+                @if (!String.IsNullOrEmpty(searchTerm) || !String.IsNullOrEmpty(isAdminQuery))
+                {
+                    <span>for username '<strong>@searchTerm</strong>' and role '<strong>@isAdminQuery</strong>'</span>
+                }
+            </p>
+        }
+        else
+        {
+            <p>No users found.</p>
+        }
+    </div>
+
+    <!-- Users Table -->
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Admin Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in userList)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>@(user.IsAdmin ? "Admin" : "User")</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "SystemUser", new { id = user.Id })" class="btn btn-primary">
+                            <i class="bi bi-pencil"></i> Edit
+                        </a>
+                        <a href="@Url.Action("ChangePassword", "SystemUser", new { id = user.Id })" class="btn btn-warning">
+                            <i class="bi bi-key"></i> Change Password
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
