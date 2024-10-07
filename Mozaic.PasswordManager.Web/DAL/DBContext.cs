@@ -10,6 +10,7 @@ namespace Mozaic.PasswordManager.Web.Models.DBEntities
 
         public DbSet<SystemUser> SystemUsers { get; set; }
         public DbSet<UserAccount> UserAccounts { get; set; }
+        public object Users { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
