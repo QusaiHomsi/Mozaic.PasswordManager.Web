@@ -18,7 +18,6 @@ namespace Mozaic.PasswordManager.Web.Controllers
             _context = context;
         }
 
-        // Action to display all users
         public async Task<IActionResult> Users()
         {
             var users = await _context.SystemUsers
@@ -33,7 +32,6 @@ namespace Mozaic.PasswordManager.Web.Controllers
             return View("/Views/Admin/Users.cshtml", users);
         }
 
-        // Action to display edit user form
         public async Task<IActionResult> Edit(int id)
         {
             var user = await _context.SystemUsers.FindAsync(id);
@@ -46,25 +44,23 @@ namespace Mozaic.PasswordManager.Web.Controllers
             {
                 Id = user.Id,
                 UserName = user.UserName,
-                IsAdmin = user.IsAdmin ?? false // Assign false if IsAdmin is null
+                IsAdmin = user.IsAdmin ?? false 
             };
 
             return View(viewModel);
         }
 
-        // POST action for saving edited user data
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                // Log validation errors
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
                 foreach (var error in errors)
                 {
                     Console.WriteLine(error.ErrorMessage);
                 }
-                return View(model); // Return to the same view with the model to show validation errors
+                return View(model); 
             }
 
             var user = await _context.SystemUsers.FindAsync(model.Id);
@@ -73,7 +69,6 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound();
             }
 
-            // Update user properties
             user.UserName = model.UserName;
             user.IsAdmin = model.IsAdmin;
 
@@ -84,15 +79,14 @@ namespace Mozaic.PasswordManager.Web.Controllers
             }
             catch (DbUpdateException ex)
             {
-                // Log exception details for troubleshooting
                 Console.WriteLine($"An error occurred updating the user: {ex.Message}");
-                return View(model); // Optionally return the view with the model
+                return View(model); 
             }
 
-            return RedirectToAction(nameof(Users)); // Redirect to the Users action
+            return RedirectToAction(nameof(Users)); 
         }
 
-        // Action for changing password
+       
         public async Task<IActionResult> ChangePassword(int id)
         {
             var user = await _context.SystemUsers.FindAsync(id);
@@ -110,7 +104,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
             return View(viewModel);
         }
 
-        // POST action for changing password
+     
         [HttpPost]
         public async Task<IActionResult> ChangePassword(int id, string newPassword)
         {
@@ -120,13 +114,12 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound();
             }
 
-            // Hash the new password (using BCrypt for password hashing)
-            user.HashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword); // Ensure you update the correct property for the hashed password
+            user.HashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
 
             _context.Update(user);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Users)); // Redirect to the Users action
+            return RedirectToAction(nameof(Users)); 
         }
     }
 }

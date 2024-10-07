@@ -3,15 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|c:\\users\\qusai\\source\\repos\\mozaic.passwordmanager\\mozaic.passwordmanager.web\\services\\symmetricencryption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|solutionrelative:mozaic.passwordmanager.web\\services\\symmetricencryption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|c:\\users\\qusai\\source\\repos\\mozaic.passwordmanager\\mozaic.passwordmanager.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|solutionrelative:mozaic.passwordmanager.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|c:\\users\\qusai\\source\\repos\\mozaic.passwordmanager\\mozaic.passwordmanager.web\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|solutionrelative:mozaic.passwordmanager.web\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|c:\\users\\qusai\\source\\repos\\mozaic.passwordmanager\\mozaic.passwordmanager.web\\views\\shared\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|solutionrelative:mozaic.passwordmanager.web\\views\\shared\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/DESKTOP_O738FN0_MSSQLSERVER1/PasswordManager/sa/SqlTable/dbo.SystemUsers.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|c:\\users\\qusai\\source\\repos\\mozaic.passwordmanager\\mozaic.passwordmanager.web\\views\\admin\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|solutionrelative:mozaic.passwordmanager.web\\views\\admin\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,41 +26,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Error.cshtml",
-              "DocumentMoniker": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Views\\Shared\\Error.cshtml",
-              "RelativeDocumentMoniker": "Mozaic.PasswordManager.Web\\Views\\Shared\\Error.cshtml",
-              "ToolTip": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Views\\Shared\\Error.cshtml",
-              "RelativeToolTip": "Mozaic.PasswordManager.Web\\Views\\Shared\\Error.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-05T13:59:42.105Z"
+              "DocumentIndex": 0,
+              "Title": "SymmetricEncryption.cs",
+              "DocumentMoniker": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Services\\SymmetricEncryption.cs",
+              "RelativeDocumentMoniker": "Mozaic.PasswordManager.Web\\Services\\SymmetricEncryption.cs",
+              "ToolTip": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Services\\SymmetricEncryption.cs",
+              "RelativeToolTip": "Mozaic.PasswordManager.Web\\Services\\SymmetricEncryption.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAACAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T11:23:50.793Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Mozaic.PasswordManager.Web\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Mozaic.PasswordManager.Web\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAAAIkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAAFcAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-05T13:58:31.155Z",
+              "WhenOpened": "2024-10-07T11:15:19.232Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "dbo.SystemUsers.sql",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/DESKTOP_O738FN0_MSSQLSERVER1/PasswordManager/sa/SqlTable/dbo.SystemUsers.sql",
-              "ToolTip": "ViewDataWindow_MSSQL__/DESKTOP_O738FN0_MSSQLSERVER1/PasswordManager/sa/SqlTable/dbo.SystemUsers.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-10-05T13:55:11.382Z"
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Views\\Shared\\Index.cshtml",
+              "RelativeDocumentMoniker": "Mozaic.PasswordManager.Web\\Views\\Shared\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Views\\Shared\\Index.cshtml",
+              "RelativeToolTip": "Mozaic.PasswordManager.Web\\Views\\Shared\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-07T11:14:17.171Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Users.cshtml",
+              "DocumentMoniker": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Views\\Admin\\Users.cshtml",
+              "RelativeDocumentMoniker": "Mozaic.PasswordManager.Web\\Views\\Admin\\Users.cshtml",
+              "ToolTip": "C:\\Users\\Qusai\\source\\repos\\Mozaic.PasswordManager\\Mozaic.PasswordManager.Web\\Views\\Admin\\Users.cshtml",
+              "RelativeToolTip": "Mozaic.PasswordManager.Web\\Views\\Admin\\Users.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADgAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-07T11:10:54.457Z"
             }
           ]
         }

@@ -2,10 +2,10 @@
 {
     public class EditUserViewModel
     {
-        public int Id { get; set; }  // User ID
+        public int Id { get; set; }  
 
-        public string UserName { get; set; }  // Username of the user
+        public string UserName { get; set; }  
 
-        public bool IsAdmin { get; set; }  // Admin status
+        public bool IsAdmin { get; set; }  
     }
 }

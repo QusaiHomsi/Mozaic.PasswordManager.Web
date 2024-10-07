@@ -10,7 +10,6 @@
 
     <h2>Create a User</h2>
 
-    <!-- Success or Error Message -->
     @if (TempData["SuccessMessage"] != null)
     {
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -26,7 +25,6 @@
         </div>
     }
 
-    <!-- Form to create a user -->
     <form asp-action="CreateUser" method="post">
         @Html.AntiForgeryToken()
 

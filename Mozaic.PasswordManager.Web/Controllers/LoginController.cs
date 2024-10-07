@@ -59,15 +59,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                             SameSite = SameSiteMode.Strict
                         });
 
-                        // Redirect based on user role
-                        if (user.IsAdmin.GetValueOrDefault())
-                        {
-                            return RedirectToAction("Hello", "Greeting"); // Admin redirection
-                        }
-                        else
-                        {
-                            return RedirectToAction("Hello", "Greeting"); // User redirection
-                        }
+                        return RedirectToAction("Hello", "Greeting"); 
                     }
                     else
                     {
@@ -90,11 +82,14 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfig.Key));
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+                // Log the username being used for the token
+                Console.WriteLine($"Creating JWT for username: {user.UserName}");
+
                 var claims = new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()),
-                    new Claim(ClaimTypes.Role, user.IsAdmin.GetValueOrDefault() ? "Admin" : "User")
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName), 
+                    new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()), 
+                    new Claim(ClaimTypes.Role, user.IsAdmin.GetValueOrDefault() ? "Admin" : "User") 
                 };
 
                 var token = new JwtSecurityToken(
@@ -121,6 +116,13 @@ namespace Mozaic.PasswordManager.Web.Controllers
         {
             var userClaims = User.Claims.Select(c => new { c.Type, c.Value });
             Console.WriteLine("User Claims: " + string.Join(", ", userClaims));
+
+            // Print logged-in user's ID and username
+            var userIdClaim = User.FindFirst(JwtRegisteredClaimNames.Jti)?.Value; 
+            var userNameClaim = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value; 
+
+            Console.WriteLine($"Logged in User ID: {userIdClaim}");
+            Console.WriteLine($"Logged in Username: {userNameClaim}"); 
 
             if (User.IsInRole("Admin"))
             {

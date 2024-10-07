@@ -1,4 +1,6 @@
-﻿public class JwtCookieMiddleware
+﻿//This middleware purpose is to read the cookie and take the jwt token from it
+//and save it at the header so the [Authenticate] can read it
+public class JwtCookieMiddleware
 {
     private readonly RequestDelegate _next;
 
