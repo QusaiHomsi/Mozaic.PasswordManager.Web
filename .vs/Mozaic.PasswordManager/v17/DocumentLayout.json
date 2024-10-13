@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{083F4554-B1D7-49C3-8576-8C8B9662E379}|Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj|c:\\users\\qusai\\desktop\\passwordmanager\\final-4.0 - copy - copy\\mozaic.passwordmanager.dal\\repositories\\systemuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{083F4554-B1D7-49C3-8576-8C8B9662E379}|Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj|solutionrelative:mozaic.passwordmanager.dal\\repositories\\systemuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SystemUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.DAL\\Repositories\\SystemUserRepository.cs",
+              "RelativeDocumentMoniker": "Mozaic.PasswordManager.DAL\\Repositories\\SystemUserRepository.cs",
+              "ToolTip": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.DAL\\Repositories\\SystemUserRepository.cs",
+              "RelativeToolTip": "Mozaic.PasswordManager.DAL\\Repositories\\SystemUserRepository.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAqwDMAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T07:42:25.866Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

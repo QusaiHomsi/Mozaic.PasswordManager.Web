@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Greeting Page";
+    var username = ViewData["Username"] ?? "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="text-center">
+        @if (User.IsInRole("Admin"))
+        {
+            <h1>Hello, @username! </h1>
+        }
+        else
+        {
+            <h1>Welcome, @username!</h1>
+        }
+        <p>Welcome to Mozaic Password Manager.</p>
+    </div>
+</body>
+</html>

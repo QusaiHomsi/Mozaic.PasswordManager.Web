@@ -1,0 +1,36 @@
+﻿@model Mozaic.PasswordManager.Web.Models.ViewModels.UserAccountViewModel
+
+@{
+    ViewData["Title"] = "Create User Account";
+}
+
+<h2>Create User Account</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="AccountName"></label>
+        <input asp-for="AccountName" class="form-control" />
+        <span asp-validation-for="AccountName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EncryptionKey">Encryption Key</label>
+        <input asp-for="EncryptionKey" class="form-control" />
+        <span asp-validation-for="EncryptionKey" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="ListPasswords" class="btn btn-secondary">Cancel</a>
+</form>
