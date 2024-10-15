@@ -30,22 +30,25 @@ internal static class SystemUserProvider
 
         using (SqlConnection conn = new SqlConnection(DatabaseHelper.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("GetSystemUsers", conn)
+            SqlCommand GetSystemUser = new SqlCommand("GetSystemUsers", conn)
             {
                 CommandType = CommandType.StoredProcedure
             };
 
+            GetSystemUser.Parameters.AddWithValue("@UserName", string.IsNullOrEmpty(filter.UserName) ? (object)DBNull.Value : filter.UserName);
+            GetSystemUser.Parameters.AddWithValue("@UserId", filter.Id.HasValue ? (object)filter.Id.Value : DBNull.Value);
+            GetSystemUser.Parameters.AddWithValue("@IsAdmin", filter.IsAdmin.HasValue ? (object)filter.IsAdmin.Value : DBNull.Value);
 
             conn.Open();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            using (SqlDataReader reader = GetSystemUser.ExecuteReader())
             {
                 while (reader.Read())
                 {
                     systemUsers.Add(new SystemUser
                     {
-                        Id = reader.GetInt32(0),
-                        UserName = reader.GetString(1),
-                        IsAdmin = reader.GetBoolean(2)
+                        Id = reader.IsDBNull(0) ? 0 : reader.GetInt32(0), 
+                        UserName = reader.IsDBNull(1) ? string.Empty : reader.GetString(1),
+                        IsAdmin = reader.IsDBNull(2) ? (bool?)null : reader.GetBoolean(2)
                     });
                 }
             }
@@ -53,6 +56,7 @@ internal static class SystemUserProvider
 
         return systemUsers;
     }
+
 
 
 }

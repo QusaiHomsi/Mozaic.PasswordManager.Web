@@ -1,22 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\",
+  "WorkspaceRootPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{083F4554-B1D7-49C3-8576-8C8B9662E379}|Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj|c:\\users\\qusai\\desktop\\passwordmanager\\github\\mozaic.passwordmanager.dal\\providers\\systemuserprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CBD1F954-B3CF-40FB-811A-B8DC7B7AE7CF}|Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj|c:\\users\\qusai\\desktop\\passwordmanager\\final-4.0 - copy - copy\\mozaic.passwordmanager.entities\\searchfilters\\systemusersearchfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBD1F954-B3CF-40FB-811A-B8DC7B7AE7CF}|Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj|solutionrelative:mozaic.passwordmanager.entities\\searchfilters\\systemusersearchfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{083F4554-B1D7-49C3-8576-8C8B9662E379}|Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj|c:\\users\\qusai\\desktop\\passwordmanager\\final-4.0 - copy - copy\\mozaic.passwordmanager.dal\\providers\\systemuserprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{083F4554-B1D7-49C3-8576-8C8B9662E379}|Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj|solutionrelative:mozaic.passwordmanager.dal\\providers\\systemuserprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{083F4554-B1D7-49C3-8576-8C8B9662E379}|Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj|c:\\users\\qusai\\desktop\\passwordmanager\\github\\mozaic.passwordmanager.dal\\repositories\\systemuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{083F4554-B1D7-49C3-8576-8C8B9662E379}|Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj|solutionrelative:mozaic.passwordmanager.dal\\repositories\\systemuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|c:\\users\\qusai\\desktop\\passwordmanager\\github\\mozaic.passwordmanager.web\\controllers\\useraccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|solutionrelative:mozaic.passwordmanager.web\\controllers\\useraccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|c:\\users\\qusai\\desktop\\passwordmanager\\github\\mozaic.passwordmanager.web\\views\\useraccount\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|solutionrelative:mozaic.passwordmanager.web\\views\\useraccount\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|c:\\users\\qusai\\desktop\\passwordmanager\\final-4.0 - copy - copy\\mozaic.passwordmanager.web\\views\\admin\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3C238855-F60B-4884-A8A6-36CE701983AB}|Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj|solutionrelative:mozaic.passwordmanager.web\\views\\admin\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,52 +30,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SystemUserProvider.cs",
-              "DocumentMoniker": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.DAL\\Providers\\SystemUserProvider.cs",
+              "DocumentMoniker": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.DAL\\Providers\\SystemUserProvider.cs",
               "RelativeDocumentMoniker": "Mozaic.PasswordManager.DAL\\Providers\\SystemUserProvider.cs",
-              "ToolTip": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.DAL\\Providers\\SystemUserProvider.cs",
+              "ToolTip": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.DAL\\Providers\\SystemUserProvider.cs",
               "RelativeToolTip": "Mozaic.PasswordManager.DAL\\Providers\\SystemUserProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAqwC8AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-15T08:46:05.038Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SystemUserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.DAL\\Repositories\\SystemUserRepository.cs",
-              "RelativeDocumentMoniker": "Mozaic.PasswordManager.DAL\\Repositories\\SystemUserRepository.cs",
-              "ToolTip": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.DAL\\Repositories\\SystemUserRepository.cs",
-              "RelativeToolTip": "Mozaic.PasswordManager.DAL\\Repositories\\SystemUserRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T08:45:53.156Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UserAccountController.cs",
-              "DocumentMoniker": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Web\\Controllers\\UserAccountController.cs",
-              "RelativeDocumentMoniker": "Mozaic.PasswordManager.Web\\Controllers\\UserAccountController.cs",
-              "ToolTip": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Web\\Controllers\\UserAccountController.cs",
-              "RelativeToolTip": "Mozaic.PasswordManager.Web\\Controllers\\UserAccountController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T08:34:04.122Z"
+              "Title": "Users.cshtml",
+              "DocumentMoniker": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Web\\Views\\Admin\\Users.cshtml",
+              "RelativeDocumentMoniker": "Mozaic.PasswordManager.Web\\Views\\Admin\\Users.cshtml",
+              "ToolTip": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Web\\Views\\Admin\\Users.cshtml",
+              "RelativeToolTip": "Mozaic.PasswordManager.Web\\Views\\Admin\\Users.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-15T11:30:32.711Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Web\\Views\\UserAccount\\Create.cshtml",
-              "RelativeDocumentMoniker": "Mozaic.PasswordManager.Web\\Views\\UserAccount\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Web\\Views\\UserAccount\\Create.cshtml",
-              "RelativeToolTip": "Mozaic.PasswordManager.Web\\Views\\UserAccount\\Create.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-14T09:17:23.974Z"
+              "DocumentIndex": 0,
+              "Title": "SystemUserSearchFilter.cs",
+              "DocumentMoniker": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Entities\\SearchFilters\\SystemUserSearchFilter.cs",
+              "RelativeDocumentMoniker": "Mozaic.PasswordManager.Entities\\SearchFilters\\SystemUserSearchFilter.cs",
+              "ToolTip": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Entities\\SearchFilters\\SystemUserSearchFilter.cs",
+              "RelativeToolTip": "Mozaic.PasswordManager.Entities\\SearchFilters\\SystemUserSearchFilter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T12:06:14.503Z",
+              "EditorCaption": ""
             }
           ]
         }
