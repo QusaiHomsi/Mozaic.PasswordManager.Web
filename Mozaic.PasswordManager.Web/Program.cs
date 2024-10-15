@@ -5,6 +5,7 @@ using Mozaic.PasswordManager.Web.Models.DBEntities;
 using Mozaic.PasswordManager.Web.Models;
 using System.Text;
 using Mozaic.PasswordManager.DAL;
+using Mozaic.PasswordManager.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
 builder.Services.AddAuthorization(options =>

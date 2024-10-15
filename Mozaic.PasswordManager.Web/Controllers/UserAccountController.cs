@@ -6,38 +6,32 @@ using Mozaic.PasswordManager.Web.Models.ViewModels;
 using System.Linq;
 using Mozaic.PasswordManager.Entities.SearchFilters;
 using Mozaic.PasswordManager.BL;
+using AutoMapper;
 
 namespace Mozaic.PasswordManager.Web.Controllers
 {
     [Authorize("User")]
     public class UserAccountController : BaseController
     {
+        private readonly IMapper _mapper;
 
-
+        public UserAccountController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         [HttpGet]
-        public async Task<IActionResult> ListPasswords(string accountName, string userName)
+        public async Task<IActionResult> GetPasswords(string accountName, string userName)
         {
-
             var manager = new UserAccountManager();
-            
-
             var filter = new UserAccountSearchFilter
             {
-
                 Id = UserInformation.Id,
                 UserName = userName,
                 Name = accountName,
             };
             var userAccounts = manager.GetUserAccounts(filter);
-
-            var viewModel = userAccounts.Select(ua => new UserAccountViewModel
-            {
-                Id = ua.Id,
-                AccountName = ua.AccountName,
-                UserName = ua.UserName,
-                Password = ua.Password
-            }).ToList();
+            var viewModel = _mapper.Map<List<UserAccountViewModel>>(userAccounts);
 
             return View(viewModel);
         }
@@ -51,9 +45,8 @@ namespace Mozaic.PasswordManager.Web.Controllers
         [HttpPost]
         public IActionResult Create(UserAccountViewModel model)
         {
-           
             var systemUserManager = new SystemUserManager();
-            var systemUser = systemUserManager.GetSystemUserById(UserInformation.Id); 
+            var systemUser = systemUserManager.GetSystemUserById(UserInformation.Id);
 
             if (ModelState.IsValid)
             {
@@ -63,23 +56,18 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 }
 
                 var encryptedPassword = SymmetricEncryption.Encrypt(model.Password, model.EncryptionKey);
-                var userAccount = new UserAccount
-                {
-                    AccountName = model.AccountName,
-                    UserName = model.UserName,
-                    Password = encryptedPassword,
-                    UserId = systemUser.Id  
-                };
+                var userAccount = _mapper.Map<UserAccount>(model);
+                userAccount.UserId = systemUser.Id;
+                userAccount.Password = encryptedPassword;
 
                 var userAccountManager = new UserAccountManager();
                 userAccountManager.CreateUserAccount(userAccount);
 
-                return RedirectToAction("ListPasswords");
+                return RedirectToAction("GetPasswords");
             }
 
             return View(model);
         }
-
 
         [HttpPost]
         public IActionResult DecryptPassword(int id, string encryptionKey)
@@ -94,7 +82,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
             try
             {
                 var decryptedPassword = SymmetricEncryption.Decrypt(userAccount.Password, encryptionKey);
-                return Json(new { decryptedPassword = decryptedPassword });
+                return Json(new { decryptedPassword });
             }
             catch (Exception)
             {

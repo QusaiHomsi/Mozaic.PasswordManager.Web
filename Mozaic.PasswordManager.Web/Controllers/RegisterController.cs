@@ -1,19 +1,23 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mozaic.PasswordManager.BL;
 using Mozaic.PasswordManager.Entities;
-using Mozaic.PasswordManager.DAL;
 using Mozaic.PasswordManager.Web.Models.ViewModels;
 using System;
-using System.Linq;
 using BCrypt.Net;
-using Mozaic.PasswordManager.BL;
 
 namespace Mozaic.PasswordManager.Web.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class RegisterController : BaseController
     {
-       
+        private readonly IMapper _mapper;
+
+        public RegisterController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -27,7 +31,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var manager =new SystemUserManager();
+                var manager = new SystemUserManager();
                 var existingUser = manager.GetSystemUserByUserName(model.UserName);
 
                 if (existingUser != null)
@@ -39,14 +43,10 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 var password = BCrypt.Net.BCrypt.HashPassword(model.Password);
                 var createdByUserName = GetUsernameFromHeaderOrIdentity();
 
-                var newUser = new SystemUser
-                {
-                    UserName = model.UserName,
-                    password = password,
-                    IsAdmin = model.IsAdmin,
-                    CreationDate = DateTime.UtcNow,
-                    CreatedBy = createdByUserName
-                };
+                var newUser = _mapper.Map<SystemUser>(model);
+                newUser.password = password;
+                newUser.CreationDate = DateTime.UtcNow;
+                newUser.CreatedBy = createdByUserName;
 
                 manager.CreateUser(newUser);
                 TempData["SuccessMessage"] = "User successfully created!";
@@ -58,3 +58,4 @@ namespace Mozaic.PasswordManager.Web.Controllers
         }
     }
 }
+    

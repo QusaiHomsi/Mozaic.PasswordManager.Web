@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ifbjq1gJVdo=",
+  "dgSpecHash": "u8k8RYtu2Mc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj",
+  "projectFilePath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Qusai\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Qusai\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Qusai\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\Qusai\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
