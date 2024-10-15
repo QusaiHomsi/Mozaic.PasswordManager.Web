@@ -11311,11 +11311,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj",
+      "projectUniqueName": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj",
       "projectName": "Mozaic.PasswordManager.Web",
-      "projectPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj",
+      "projectPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Web\\Mozaic.PasswordManager.Web.csproj",
       "packagesPath": "C:\\Users\\Qusai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Web\\obj\\",
+      "outputPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Qusai\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -11333,11 +11333,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.BL\\Mozaic.PasswordManager.BL.csproj": {
-              "projectPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.BL\\Mozaic.PasswordManager.BL.csproj"
+            "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.BL\\Mozaic.PasswordManager.BL.csproj": {
+              "projectPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.BL\\Mozaic.PasswordManager.BL.csproj"
             },
-            "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj": {
-              "projectPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj"
+            "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj": {
+              "projectPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj"
             }
           }
         }
