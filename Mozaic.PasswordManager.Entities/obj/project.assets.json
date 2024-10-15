@@ -1889,11 +1889,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj",
       "projectName": "Mozaic.PasswordManager.Entities",
-      "projectPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj",
+      "projectPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Entities\\Mozaic.PasswordManager.Entities.csproj",
       "packagesPath": "C:\\Users\\Qusai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.Entities\\obj\\",
+      "outputPath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Qusai\\AppData\\Roaming\\NuGet\\NuGet.Config",

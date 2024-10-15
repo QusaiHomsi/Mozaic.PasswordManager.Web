@@ -9,7 +9,7 @@ namespace Mozaic.PasswordManager.DAL
         public RepositoryBase()
         {
 
-            string connectionString = "server=desktop-o738fn0\\mssqlserver1;database=PasswordManager;user=sa;password=11111111;trustservercertificate=true";
+            string connectionString = "ReplaceWithConnectionString";
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
             AppDbContext = new AppDbContext(optionsBuilder.Options);
