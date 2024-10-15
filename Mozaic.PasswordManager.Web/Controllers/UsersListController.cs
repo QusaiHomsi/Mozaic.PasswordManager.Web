@@ -1,32 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Mozaic.PasswordManager.Web.Models.ViewModels;
-using Mozaic.PasswordManager.DAL;
-using Mozaic.PasswordManager.Entities.SearchFilters;
-using Mozaic.PasswordManager.Entities;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Mozaic.PasswordManager.BL;
+using Mozaic.PasswordManager.Entities;
+using Mozaic.PasswordManager.Entities.SearchFilters;
+using Mozaic.PasswordManager.Web.Models.ViewModels;
 using System.Linq;
 using System.Threading.Tasks;
-using Mozaic.PasswordManager.BL;
-
 
 namespace Mozaic.PasswordManager.Web.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class SystemUserController : BaseController
     {
-       
+        private readonly IMapper _mapper;
+
+        public SystemUserController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         public IActionResult Users(SystemUserSearchFilter filter)
         {
             var manager = new SystemUserManager();
-            var users = manager.GetSystemUser(filter)
-                .Select(u => new SystemUserViewModel
-                {
-                    Id = u.Id,
-                    UserName = u.UserName,
-                    IsAdmin = u.IsAdmin ?? false
-                }).ToList();
+            var users = manager.GetSystemUser(filter);
+            var viewModel = _mapper.Map<List<SystemUserViewModel>>(users);
 
-            return View("/Views/Admin/Users.cshtml", users);
+            return View("/Views/Admin/Users.cshtml", viewModel);
         }
 
         public IActionResult Edit(int id)
@@ -38,13 +38,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound();
             }
 
-            var viewModel = new EditUserViewModel
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                IsAdmin = user.IsAdmin ?? false
-            };
-
+            var viewModel = _mapper.Map<EditUserViewModel>(user);
             return View(viewModel);
         }
 
@@ -55,6 +49,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
             {
                 return View(model);
             }
+
             var manager = new SystemUserManager();
             var user = manager.GetSystemUserById(model.Id);
             if (user == null)
@@ -62,9 +57,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound();
             }
 
-            user.UserName = model.UserName;
-            user.IsAdmin = model.IsAdmin;
-
+            _mapper.Map(model, user);
             manager.UpdateUser(user);
 
             return RedirectToAction(nameof(Users));
@@ -79,12 +72,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound();
             }
 
-            var viewModel = new SystemUserViewModel
-            {
-                Id = user.Id,
-                UserName = user.UserName
-            };
-
+            var viewModel = _mapper.Map<SystemUserViewModel>(user);
             return View(viewModel);
         }
 
@@ -99,7 +87,6 @@ namespace Mozaic.PasswordManager.Web.Controllers
             }
 
             user.password = BCrypt.Net.BCrypt.HashPassword(newPassword);
-
             manager.UpdateUser(user);
 
             return RedirectToAction(nameof(Users));

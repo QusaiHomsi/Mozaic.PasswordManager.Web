@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Mozaic.PasswordManager.DAL;
 
 
 
@@ -12,16 +13,9 @@ namespace Mozaic.PasswordManager.DAL
 {
     internal class SystemUserRepository : RepositoryBase
     {
-        private readonly string _connectionString;
-
-        public SystemUserRepository()
-        {
-            _connectionString = AppDbContext.Database.GetDbConnection().ConnectionString;
-        }
-
         public List<SystemUser> GetSystemUser(SystemUserSearchFilter filter)
         {
-            return AppDbContext.SystemUsers.ToList();
+            return SystemUserProvider.GetSystemUser(filter);
         }
 
         public SystemUser GetSystemUserById(int id)
@@ -42,20 +36,9 @@ namespace Mozaic.PasswordManager.DAL
 
         public async Task CreateUser(SystemUser user)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand createuser = new SqlCommand("dbo.CreateSystemUser", conn))
-                {
-                    createuser.CommandType = CommandType.StoredProcedure;
-
-                    createuser.Parameters.AddWithValue("@UserName", user.UserName);
-                    createuser.Parameters.AddWithValue("@Password", user.password);
-                    createuser.Parameters.AddWithValue("@CreatedDate", user.CreationDate);
-
-                    conn.Open();
-                    await createuser.ExecuteNonQueryAsync();
-                }
-            }
+            await SystemUserProvider.CreateUser(user);
         }
     }
+
 }
+
