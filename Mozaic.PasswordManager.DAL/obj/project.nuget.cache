@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uUZ+0FucmZ0=",
+  "dgSpecHash": "VIjpdLfFf70=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Github\\Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj",
+  "projectFilePath": "C:\\Users\\Qusai\\Desktop\\Passwordmanager\\Final-4.0 - Copy - Copy\\Mozaic.PasswordManager.DAL\\Mozaic.PasswordManager.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Qusai\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Qusai\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
