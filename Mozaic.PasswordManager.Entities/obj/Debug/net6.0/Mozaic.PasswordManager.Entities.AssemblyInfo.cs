@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mozaic.PasswordManager.Entities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f76e0db1cdf528c9b3b7508fab6ba0cd795e5dc0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mozaic.PasswordManager.Entities")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mozaic.PasswordManager.Entities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

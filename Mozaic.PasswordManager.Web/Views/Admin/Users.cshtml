@@ -7,11 +7,16 @@
             {
                 UserName = Context.Request.Query["username"].ToString(),
                 Id = int.TryParse(Context.Request.Query["userId"], out var userId) ? (int?)userId : null,
-                IsAdmin = bool.TryParse(Context.Request.Query["isAdmin"], out var isAdmin) ? (bool?)isAdmin : null
+                IsAdmin = bool.TryParse(Context.Request.Query["isAdmin"], out var isAdmin) ? (bool?)isAdmin : null,
+                PageSize = int.TryParse(Context.Request.Query["pageSize"], out var pageSize) ? pageSize : 5, 
+                PageNumber = int.TryParse(Context.Request.Query["pageNumber"], out var pageNumber) ? pageNumber : 1 
             };
 
     var manager = new Mozaic.PasswordManager.BL.SystemUserManager();
     var userList = manager.GetSystemUser(filter);
+
+    int totalRecords = filter.TotalRecords; 
+    int totalPages = (int)Math.Ceiling((double)totalRecords / filter.PageSize);
 }
 
 <div class="container mt-4">
@@ -23,7 +28,6 @@
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search by username" name="username" value="@filter.UserName" />
                 <input type="text" class="form-control ms-2" placeholder="Search by ID" name="userId" value="@filter.Id" />
-
                 <div class="ms-2">
                     @Html.DropDownList("isAdmin", new List<SelectListItem>
                     {
@@ -32,7 +36,15 @@
                     new SelectListItem { Text = "User", Value = "false" }
                     }, new { @class = "form-select" })
                 </div>
-
+                <div class="ms-2">
+                    @Html.DropDownList("pageSize", new List<SelectListItem>
+                    {
+                    new SelectListItem { Text = "5", Value = "5" , Selected = true },
+                    new SelectListItem { Text = "10", Value = "10"},
+                    new SelectListItem { Text = "20", Value = "20" },
+                    new SelectListItem { Text = "50", Value = "50" }
+                    }, new { @class = "form-select", onchange = "this.form.submit();" }) 
+                </div>
                 <button class="btn btn-primary" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
@@ -44,7 +56,7 @@
     </div>
 
     <div class="mb-3">
-        <a href="@Url.Action("Register", "SystemUser")" class="btn btn-success">
+        <a href="@Url.Action("", "Register")" class="btn btn-success">
             <i class="bi bi-plus-circle"></i> Add User
         </a>
     </div>
@@ -52,7 +64,7 @@
     <div>
         @if (userList != null && userList.Any())
         {
-            <p>Total Users: @userList.Count()</p>
+            <p>Total Users: @totalRecords</p>
             <p>
                 Showing @userList.Count() results
                 @if (!string.IsNullOrEmpty(filter.UserName) || filter.Id.HasValue || filter.IsAdmin.HasValue)
@@ -85,7 +97,6 @@
                     <td>@user.Id</td>
                     <td>@user.UserName</td>
                     <td>@(user.IsAdmin.HasValue && user.IsAdmin.Value ? "Admin" : "User")</td>
-
                     <td>
                         <a href="@Url.Action("Edit", "SystemUser", new { id = user.Id })" class="btn btn-primary">
                             <i class="bi bi-pencil"></i>
@@ -98,4 +109,18 @@
             }
         </tbody>
     </table>
+
+    @if (totalPages > 1)
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li class="page-item @(i == filter.PageNumber ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Users", new { pageNumber = i, pageSize = filter.PageSize, username = filter.UserName, userId = filter.Id, isAdmin = filter.IsAdmin })">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
 </div>
