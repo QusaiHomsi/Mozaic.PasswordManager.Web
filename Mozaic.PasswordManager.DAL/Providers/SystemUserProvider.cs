@@ -15,8 +15,9 @@ internal static class SystemUserProvider
                 createuser.CommandType = CommandType.StoredProcedure;
 
                 createuser.Parameters.AddWithValue("@UserName", user.UserName);
-                createuser.Parameters.AddWithValue("@Password", user.password);
+                createuser.Parameters.AddWithValue("@Password", user.password); // Ensure property name is correct (case-sensitive)
                 createuser.Parameters.AddWithValue("@CreatedDate", user.CreationDate);
+                createuser.Parameters.AddWithValue("@IsAdmin", user.IsAdmin); // Pass the IsAdmin property
 
                 conn.Open();
                 await createuser.ExecuteNonQueryAsync();
@@ -24,9 +25,11 @@ internal static class SystemUserProvider
         }
     }
 
+
     public static List<SystemUser> GetSystemUser(SystemUserSearchFilter filter)
     {
         var systemUsers = new List<SystemUser>();
+        int totalRecords = 0;
 
         using (SqlConnection conn = new SqlConnection(DatabaseHelper.ConnectionString))
         {
@@ -38,6 +41,8 @@ internal static class SystemUserProvider
             GetSystemUser.Parameters.AddWithValue("@UserName", string.IsNullOrEmpty(filter.UserName) ? (object)DBNull.Value : filter.UserName);
             GetSystemUser.Parameters.AddWithValue("@UserId", filter.Id.HasValue ? (object)filter.Id.Value : DBNull.Value);
             GetSystemUser.Parameters.AddWithValue("@IsAdmin", filter.IsAdmin.HasValue ? (object)filter.IsAdmin.Value : DBNull.Value);
+            GetSystemUser.Parameters.AddWithValue("@PageSize", filter.PageSize);
+            GetSystemUser.Parameters.AddWithValue("@PageNumber", filter.PageNumber);
 
             conn.Open();
             using (SqlDataReader reader = GetSystemUser.ExecuteReader())
@@ -46,16 +51,24 @@ internal static class SystemUserProvider
                 {
                     systemUsers.Add(new SystemUser
                     {
-                        Id = reader.IsDBNull(0) ? 0 : reader.GetInt32(0), 
+                        Id = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
                         UserName = reader.IsDBNull(1) ? string.Empty : reader.GetString(1),
                         IsAdmin = reader.IsDBNull(2) ? (bool?)null : reader.GetBoolean(2)
                     });
                 }
+
+                if (reader.NextResult() && reader.Read())
+                {
+                    totalRecords = reader.GetInt32(0); 
+                }
             }
         }
 
+        filter.TotalRecords = totalRecords;
+
         return systemUsers;
     }
+
 
 
 
