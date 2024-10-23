@@ -20,13 +20,22 @@ namespace Mozaic.PasswordManager.Web.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Users(SystemUserSearchFilter filter)
+        public async Task<ActionResult>  Users(SystemUserSearchFilter filter)
         {
-            var manager = new SystemUserManager();
-            var users = manager.GetSystemUser(filter);
-            var viewModel = _mapper.Map<List<SystemUserViewModel>>(users);
+           
 
-            return View("/Views/Admin/Users.cshtml", viewModel);
+            try
+            {
+                var manager = new SystemUserManager();
+                var users =  manager.GetSystemUser(filter);
+                var viewModel = _mapper.Map<List<SystemUserViewModel>>(users);
+                return View("/Views/Admin/Users.cshtml", viewModel);
+            }
+            catch (Exception ex)
+            {
+
+                return RedirectToAction("Error", "Home", new { message = ex.Message });
+            }
         }
 
         public IActionResult Edit(int id)

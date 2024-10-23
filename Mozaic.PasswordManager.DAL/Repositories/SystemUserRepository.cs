@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Mozaic.PasswordManager.DAL;
+using Mozaic.PasswordManager.DAL.Exceptions;
 
 
 
@@ -15,28 +16,68 @@ namespace Mozaic.PasswordManager.DAL
     {
         public List<SystemUser> GetSystemUser(SystemUserSearchFilter filter)
         {
-            return SystemUserProvider.GetSystemUser(filter);
+            try
+            {
+                return SystemUserProvider.GetSystemUser(filter);
+            }
+            catch (Exception ex)
+            {
+
+                throw new DataProviderException("DATABASE EXCEPTION WHILE OCCURED WHILE Getting System USER", ex);
+            }
         }
 
         public SystemUser GetSystemUserById(int id)
         {
-            return AppDbContext.SystemUsers.FirstOrDefault(u => u.Id == id);
+            try
+            {
+                return AppDbContext.SystemUsers.FirstOrDefault(u => u.Id == id);
+            }
+            catch (Exception ex)
+            {
+
+                throw new DataProviderException("DATABASE EXCEPTION WHILE OCCURED WHILE Getting System USER by ID", ex);
+            }
         }
 
         public void UpdateUser(SystemUser user)
         {
-            AppDbContext.SystemUsers.Update(user);
-            AppDbContext.SaveChanges();
+            try
+            {
+                AppDbContext.SystemUsers.Update(user);
+                AppDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw new DataProviderException("DATABASE EXCEPTION WHILE OCCURED WHILE Updating System User", ex);
+            }
         }
 
         public SystemUser GetSystemUserByUserName(string username)
         {
-            return AppDbContext.SystemUsers.FirstOrDefault(u => u.UserName == username);
+            try
+            {
+                return AppDbContext.SystemUsers.FirstOrDefault(u => u.UserName == username);
+            }
+            catch (Exception ex)
+            {
+
+                throw new DataProviderException("DATABASE EXCEPTION WHILE OCCURED WHILE Getting System USER by username", ex);
+            }
         }
 
         public async Task CreateUser(SystemUser user)
         {
-            await SystemUserProvider.CreateUser(user);
+            try
+            {
+                await SystemUserProvider.CreateUser(user);
+            }
+            catch (Exception ex)
+            {
+
+                throw new DataProviderException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER",ex);
+            }
         }
     }
 

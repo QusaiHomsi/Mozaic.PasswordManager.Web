@@ -6,8 +6,22 @@ using Mozaic.PasswordManager.Web.Models;
 using System.Text;
 using Mozaic.PasswordManager.DAL;
 using Mozaic.PasswordManager.Web;
+using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger =  new LoggerConfiguration()
+    .MinimumLevel.Error()
+    .WriteTo.File("logs/error-log.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.MSSqlServer(
+        connectionString: builder.Configuration.GetConnectionString("DefaultConnection"),
+        tableName: "Logs",
+        autoCreateSqlTable: true,
+        restrictedToMinimumLevel: LogEventLevel.Error
+    ).CreateLogger();
+
+builder.Host.UseSerilog();
 
 builder.Services.AddControllersWithViews();
 
