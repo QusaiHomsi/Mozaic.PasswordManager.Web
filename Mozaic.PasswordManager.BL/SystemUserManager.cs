@@ -3,6 +3,10 @@ using Mozaic.PasswordManager.Entities.SearchFilters;
 using Mozaic.PasswordManager.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Mozaic.PasswordManager.DAL.Exceptions;
+using Mozaic.PasswordManager.BL.Exceptions;
+using Serilog;
+using Mozaic.PasswordManager.Common;
 
 namespace Mozaic.PasswordManager.BL
 {
@@ -10,32 +14,81 @@ namespace Mozaic.PasswordManager.BL
     {
         public List<SystemUser> GetSystemUser(SystemUserSearchFilter filter)
         {
-            var repository = new SystemUserRepository();
-            return repository.GetSystemUser(filter);
+            try
+            {
+
+                var repository = new SystemUserRepository();
+                return repository.GetSystemUser(filter);
+            }
+            catch (Exception ex)
+            {
+                //Log Exception
+                LogingHelper.LogError( "an error occured while getting system user",ex);
+                throw new BusinessException("DATABASE EXCEPTION WHILE while getting user", ex);
+            }
         }
 
         public SystemUser GetSystemUserById(int id)
         {
-            var repository = new SystemUserRepository();
-            return repository.GetSystemUserById(id);
+            try
+            {
+                var repository = new SystemUserRepository();
+                return repository.GetSystemUserById(id);
+            }
+            catch (Exception ex)
+            {
+                //Log Exception
+                LogingHelper.LogError("an error occured while getting system user by id ", ex);
+                throw new BusinessException("DATABASE EXCEPTION WHILE while getting user", ex);
+            }
         }
 
         public void UpdateUser(SystemUser user)
         {
-            var repository = new SystemUserRepository();
-            repository.UpdateUser(user);
+            try
+            {
+                var repository = new SystemUserRepository();
+                repository.UpdateUser(user);
+            }
+            catch (Exception ex)
+            {
+                //Log Exception
+                LogingHelper.LogError("an error occured while updating system user ", ex);
+                throw new BusinessException("DATABASE EXCEPTION WHILE while getting user", ex);
+            }
         }
 
         public SystemUser GetSystemUserByUserName(string username)
         {
-            var repository = new SystemUserRepository();  
-            return repository.GetSystemUserByUserName(username);
+            try
+            {
+                var repository = new SystemUserRepository();
+                return repository.GetSystemUserByUserName(username);
+            }
+            catch (Exception ex)
+            {
+                //Log Exception
+                LogingHelper.LogError("an error occured while updating system user ", ex);
+                throw new BusinessException("DATABASE EXCEPTION WHILE while getting user", ex);
+            }
         }
 
         public async Task CreateUser(SystemUser user)
         {
-            var repository = new SystemUserRepository();
-            await repository.CreateUser(user);
+            try
+            {
+                int x = 0;
+                x = 5 / x;
+                var repository = new SystemUserRepository();
+                await repository.CreateUser(user);
+
+            }
+            catch (Exception ex)
+            {
+                //Log Exception
+                LogingHelper.LogError("an error occured while creating system user", ex);
+                throw new BusinessException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER", ex);
+            }
         }
     }
 }

@@ -33,19 +33,25 @@ internal static class SystemUserProvider
 
         using (SqlConnection conn = new SqlConnection(DatabaseHelper.ConnectionString))
         {
-            SqlCommand GetSystemUser = new SqlCommand("GetSystemUsers", conn)
+            SqlCommand sqlCommand = new SqlCommand("GetSystemUsers", conn)
             {
                 CommandType = CommandType.StoredProcedure
             };
 
-            GetSystemUser.Parameters.AddWithValue("@UserName", string.IsNullOrEmpty(filter.UserName) ? (object)DBNull.Value : filter.UserName);
-            GetSystemUser.Parameters.AddWithValue("@UserId", filter.Id.HasValue ? (object)filter.Id.Value : DBNull.Value);
-            GetSystemUser.Parameters.AddWithValue("@IsAdmin", filter.IsAdmin.HasValue ? (object)filter.IsAdmin.Value : DBNull.Value);
-            GetSystemUser.Parameters.AddWithValue("@PageSize", filter.PageSize);
-            GetSystemUser.Parameters.AddWithValue("@PageNumber", filter.PageNumber);
+            sqlCommand.Parameters.AddWithValue("@UserName", string.IsNullOrEmpty(filter.UserName) ? (object)DBNull.Value : filter.UserName);
+            sqlCommand.Parameters.AddWithValue("@UserId", filter.Id.HasValue ? (object)filter.Id.Value : DBNull.Value);
+            sqlCommand.Parameters.AddWithValue("@IsAdmin", filter.IsAdmin.HasValue ? (object)filter.IsAdmin.Value : DBNull.Value);
+            sqlCommand.Parameters.AddWithValue("@PageSize", filter.PageSize);
+            sqlCommand.Parameters.AddWithValue("@PageNumber", filter.PageNumber);
+
+            var totalNumberOResultParam = new SqlParameter();
+            totalNumberOResultParam.Direction = ParameterDirection.Output;
+            totalNumberOResultParam.SqlDbType = SqlDbType.Int;
+            totalNumberOResultParam.ParameterName = "@TotalResult";
+            sqlCommand.Parameters.Add(totalNumberOResultParam);
 
             conn.Open();
-            using (SqlDataReader reader = GetSystemUser.ExecuteReader())
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 while (reader.Read())
                 {
@@ -57,11 +63,11 @@ internal static class SystemUserProvider
                     });
                 }
 
-                if (reader.NextResult() && reader.Read())
-                {
-                    totalRecords = reader.GetInt32(0); 
-                }
+                
+
             }
+            totalRecords = (int)totalNumberOResultParam.Value;
+
         }
 
         filter.TotalRecords = totalRecords;

@@ -1,5 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Mozaic.PasswordManager.Web.Models.DBEntities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Mozaic.PasswordManager.Web.Models.DBEntities;
+using Mozaic.PasswordManager.Web.Models;
+using System.Text;
+using Mozaic.PasswordManager.DAL;
+using Mozaic.PasswordManager.Web;
 
 namespace Mozaic.PasswordManager.DAL
 {

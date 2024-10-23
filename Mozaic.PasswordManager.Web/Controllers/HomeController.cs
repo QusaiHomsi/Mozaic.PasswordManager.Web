@@ -35,6 +35,11 @@ namespace Mozaic.PasswordManager.Web.Controllers
         {
             return View();
         }
+        public ActionResult Error(string message)
+        {
+            ViewBag.ErrorMessage = message;
+            return View();
+        }
 
         public IActionResult Hello()
         {
@@ -46,10 +51,10 @@ namespace Mozaic.PasswordManager.Web.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

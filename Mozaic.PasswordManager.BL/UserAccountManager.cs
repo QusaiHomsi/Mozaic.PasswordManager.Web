@@ -1,4 +1,6 @@
-﻿using Mozaic.PasswordManager.DAL;
+﻿using Mozaic.PasswordManager.BL.Exceptions;
+using Mozaic.PasswordManager.Common;
+using Mozaic.PasswordManager.DAL;
 using Mozaic.PasswordManager.Entities;
 using Mozaic.PasswordManager.Entities.SearchFilters;
 using Mozaic.PasswordManager.Web.Models.DBEntities;
@@ -14,18 +16,45 @@ namespace Mozaic.PasswordManager.BL
     {
         public List<UserAccount> GetUserAccounts(UserAccountSearchFilter filter)
         {
-            var repository = new UserAccountRepository();
-            return repository.GetUserAccounts(filter); // Returns all matching accounts
+            try
+            {
+                var repository = new UserAccountRepository();
+                return repository.GetUserAccounts(filter); 
+            }
+            catch (Exception ex)
+            {
+                //Log Exception
+                LogingHelper.LogError("an error occured while getting User accounts", ex);
+                throw new BusinessException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER", ex);
+            }
         }
         public void CreateUserAccount(UserAccount userAccount)
         {
-            var repository = new UserAccountRepository();
-            repository.CreateUserAccount(userAccount); 
+            try
+            {
+                var repository = new UserAccountRepository();
+                repository.CreateUserAccount(userAccount);
+            }
+            catch (Exception ex)
+            {
+                //Log Exception
+                LogingHelper.LogError("an error occured while creating User accounts", ex);
+                throw new BusinessException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER", ex);
+            }
         }
         public UserAccount GetUserAccountById(int id)
         {
-            var repository = new UserAccountRepository();
-            return repository.GetUserAccountById(id);
+            try
+            {
+                var repository = new UserAccountRepository();
+                return repository.GetUserAccountById(id);
+            }
+            catch (Exception ex)
+            {
+                //Log Exception
+                LogingHelper.LogError("an error occured while getting User accounts by id", ex);
+                throw new BusinessException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER", ex);
+            }
         }
     }
 }
