@@ -16,7 +16,8 @@ namespace Mozaic.PasswordManager.BL
         {
             try
             {
-
+                //int zero = 0;
+                //int result = 100 / zero;
                 var repository = new SystemUserRepository();
                 return repository.GetSystemUser(filter);
             }
@@ -24,7 +25,7 @@ namespace Mozaic.PasswordManager.BL
             {
                 //Log Exception
                 LogingHelper.LogError( "an error occured while getting system user",ex);
-                throw new BusinessException("DATABASE EXCEPTION WHILE while getting user", ex);
+                throw new BusinessException("an error occured while getting system user", ex);
             }
         }
 
@@ -39,7 +40,7 @@ namespace Mozaic.PasswordManager.BL
             {
                 //Log Exception
                 LogingHelper.LogError("an error occured while getting system user by id ", ex);
-                throw new BusinessException("DATABASE EXCEPTION WHILE while getting user", ex);
+                throw new BusinessException("an error occured while getting system user by id", ex);
             }
         }
 
@@ -54,7 +55,7 @@ namespace Mozaic.PasswordManager.BL
             {
                 //Log Exception
                 LogingHelper.LogError("an error occured while updating system user ", ex);
-                throw new BusinessException("DATABASE EXCEPTION WHILE while getting user", ex);
+                throw new BusinessException("an error occured while updating system user", ex);
             }
         }
 
@@ -69,7 +70,7 @@ namespace Mozaic.PasswordManager.BL
             {
                 //Log Exception
                 LogingHelper.LogError("an error occured while updating system user ", ex);
-                throw new BusinessException("DATABASE EXCEPTION WHILE while getting user", ex);
+                throw new BusinessException("an error occured while updating system user", ex);
             }
         }
 
@@ -77,8 +78,7 @@ namespace Mozaic.PasswordManager.BL
         {
             try
             {
-                int x = 0;
-                x = 5 / x;
+                
                 var repository = new SystemUserRepository();
                 await repository.CreateUser(user);
 
@@ -87,7 +87,7 @@ namespace Mozaic.PasswordManager.BL
             {
                 //Log Exception
                 LogingHelper.LogError("an error occured while creating system user", ex);
-                throw new BusinessException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER", ex);
+                throw new BusinessException("an error occured while creating system user", ex);
             }
         }
     }

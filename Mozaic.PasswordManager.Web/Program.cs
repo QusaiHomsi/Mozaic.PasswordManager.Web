@@ -11,7 +11,8 @@ using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Log.Logger =  new LoggerConfiguration()
+// Configure Serilog logging
+Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Error()
     .WriteTo.File("logs/error-log.txt", rollingInterval: RollingInterval.Day)
     .WriteTo.MSSqlServer(
@@ -23,11 +24,15 @@ Log.Logger =  new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<GlobalExceptionFilter>();
+});
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// JWT Configuration
 var jwtKey = builder.Configuration["JwtConfig:Key"];
 var jwtIssuer = builder.Configuration["JwtConfig:Issuer"];
 var jwtAudience = builder.Configuration["JwtConfig:Audience"];
@@ -65,9 +70,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("User", policy => policy.RequireRole("User"));
 });
 
-
-
-
+// Build the app
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -82,10 +85,17 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseMiddleware<JwtCookieMiddleware>();
-
+app.UseStatusCodePages(async context =>
+{
+    if (context.HttpContext.Response.StatusCode == 401) // Unauthorized
+    {
+        context.HttpContext.Response.Redirect("/Home/Unauthorized");
+    }
+});
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Configure routing
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

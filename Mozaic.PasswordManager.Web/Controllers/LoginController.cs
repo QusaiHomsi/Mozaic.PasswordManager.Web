@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 using Mozaic.PasswordManager.Entities;
 using Mozaic.PasswordManager.BL;
 
-
 namespace Mozaic.PasswordManager.Web.Controllers
 {
     [Authorize]
@@ -44,7 +43,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 {
                     var token = GenerateJwtToken(user);
                     Response.Cookies.Append("JWT", token);
-
+                    
                     return RedirectToAction("Hello", "Greeting");
                 }
 
@@ -65,7 +64,13 @@ namespace Mozaic.PasswordManager.Web.Controllers
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfig.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(_jwtConfig.Issuer, _jwtConfig.Audience, claims, expires: DateTime.UtcNow.AddDays(_jwtConfig.ExpireDays), signingCredentials: creds);
+            var token = new JwtSecurityToken(
+                _jwtConfig.Issuer,
+                _jwtConfig.Audience,
+                claims,
+                expires: DateTime.UtcNow.AddDays(_jwtConfig.ExpireDays),
+                signingCredentials: creds
+            );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

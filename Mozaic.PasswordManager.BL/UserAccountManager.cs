@@ -25,7 +25,7 @@ namespace Mozaic.PasswordManager.BL
             {
                 //Log Exception
                 LogingHelper.LogError("an error occured while getting User accounts", ex);
-                throw new BusinessException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER", ex);
+                throw new BusinessException("an error occured while getting User accounts ", ex);
             }
         }
         public void CreateUserAccount(UserAccount userAccount)
@@ -39,7 +39,7 @@ namespace Mozaic.PasswordManager.BL
             {
                 //Log Exception
                 LogingHelper.LogError("an error occured while creating User accounts", ex);
-                throw new BusinessException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER", ex);
+                throw new BusinessException("an error occured while creating User accounts", ex);
             }
         }
         public UserAccount GetUserAccountById(int id)
@@ -53,7 +53,7 @@ namespace Mozaic.PasswordManager.BL
             {
                 //Log Exception
                 LogingHelper.LogError("an error occured while getting User accounts by id", ex);
-                throw new BusinessException("DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER", ex);
+                throw new BusinessException("an error occured while creating User accounts", ex);
             }
         }
     }

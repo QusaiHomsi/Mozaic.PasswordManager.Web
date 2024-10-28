@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Error";
+    ViewBag.Title = "Unauthorized";
 }
 
 
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Error</title>
+    <title>404 Error - SB Admin</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -23,21 +23,24 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="text-center mt-4">
-                               
-                               <h1>Error</h1>
-                                <p>@ViewBag.ErrorMessage</p>
-                                <a class="nav-link" href="@Url.Action("Hello", "Greeting")">
+                                <h1 class="display-1">401</h1>
+                                <p class="lead">Unauthorized</p>
+                                <p>Access to this resource is denied.</p>
+                                <a class="nav-link" href="@Url.Action("")">
                                     <i class="fas fa-arrow-left me-1"></i>
-                                    Return to HomePage
+                                    Return to Dashboard
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
+        </div>
        
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
 </body>
 </html>
+
 
