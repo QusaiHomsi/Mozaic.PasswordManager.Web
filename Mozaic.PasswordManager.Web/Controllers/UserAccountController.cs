@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Mozaic.PasswordManager.Entities;
 using Mozaic.PasswordManager.DAL;
 using Mozaic.PasswordManager.Web.Models.ViewModels;
-using System.Linq;
 using Mozaic.PasswordManager.Entities.SearchFilters;
 using Mozaic.PasswordManager.BL;
 using AutoMapper;
@@ -30,6 +29,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 UserName = userName,
                 Name = accountName,
             };
+           
             var userAccounts = manager.GetUserAccounts(filter);
             var viewModel = _mapper.Map<List<UserAccountViewModel>>(userAccounts);
 
@@ -79,15 +79,8 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound("User account not found.");
             }
 
-            try
-            {
-                var decryptedPassword = SymmetricEncryption.Decrypt(userAccount.Password, encryptionKey);
-                return Json(new { decryptedPassword });
-            }
-            catch (Exception)
-            {
-                return BadRequest("Invalid encryption key or error during decryption.");
-            }
+            var decryptedPassword = SymmetricEncryption.Decrypt(userAccount.Password, encryptionKey);
+            return Json(new { decryptedPassword });
         }
     }
 }
