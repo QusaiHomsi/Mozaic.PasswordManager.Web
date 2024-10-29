@@ -18,7 +18,7 @@ internal static class SystemUserProvider
                 createuser.Parameters.AddWithValue("@Password", user.password); // Ensure property name is correct (case-sensitive)
                 createuser.Parameters.AddWithValue("@CreatedDate", user.CreationDate);
                 createuser.Parameters.AddWithValue("@IsAdmin", user.IsAdmin); // Pass the IsAdmin property
-
+                createuser.Parameters.AddWithValue("CreatedBy", user.CreatedBy);
                 conn.Open();
                 await createuser.ExecuteNonQueryAsync();
             }

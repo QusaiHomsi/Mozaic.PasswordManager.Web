@@ -18,14 +18,13 @@ namespace Mozaic.PasswordManager.Web.Controllers
         public SystemUserController(IMapper mapper)
         {
             _mapper = mapper;
-        }
-
-        public async Task<ActionResult>  Users(SystemUserSearchFilter filter)
+        }   
+        [Route("SystemUser/Users")]
+        public async Task<ActionResult>  GetUsers(SystemUserSearchFilter filter)
         {
 
 
-            int zero = 0;
-            int result = 100 / zero;
+            
             var manager = new SystemUserManager();
                 var users =  manager.GetSystemUser(filter);
                 var viewModel = _mapper.Map<List<SystemUserViewModel>>(users);
@@ -63,9 +62,11 @@ namespace Mozaic.PasswordManager.Web.Controllers
             }
 
             _mapper.Map(model, user);
+            user.LastModified = DateTime.UtcNow;
             manager.UpdateUser(user);
+            
 
-            return RedirectToAction(nameof(Users));
+            return RedirectToAction(nameof(GetUsers));
         }
 
         public IActionResult ChangePassword(int id)
@@ -94,7 +95,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
             user.password = BCrypt.Net.BCrypt.HashPassword(newPassword);
             manager.UpdateUser(user);
 
-            return RedirectToAction(nameof(Users));
+            return RedirectToAction(nameof(GetUsers));
         }
     }
 }

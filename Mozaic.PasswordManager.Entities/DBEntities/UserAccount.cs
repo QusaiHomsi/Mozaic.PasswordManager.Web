@@ -29,5 +29,9 @@ namespace Mozaic.PasswordManager.Entities
         public int UserId { get; set; }
 
         public SystemUser SystemUser { get; set; }
+
+        public DateTime? CreationDate { get; set; }
+
+        public DateTime? LastModified { get; set; }
     }
 }

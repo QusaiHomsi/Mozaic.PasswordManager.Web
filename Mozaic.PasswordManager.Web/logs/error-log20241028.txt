@@ -1,0 +1,338 @@
+2024-10-28 16:06:21.279 +03:00 [ERR] Attempted to divide by zero.
+System.DivideByZeroException: Attempted to divide by zero.
+   at Mozaic.PasswordManager.Web.Controllers.SystemUserController.Users(SystemUserSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Controllers\UsersListController.cs:line 28
+   at lambda_method92(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2024-10-28 16:10:58.098 +03:00 [ERR] Padding is invalid and cannot be removed.
+System.Security.Cryptography.CryptographicException: Padding is invalid and cannot be removed.
+   at Internal.Cryptography.UniversalCryptoDecryptor.GetPaddingLength(ReadOnlySpan`1 block)
+   at Internal.Cryptography.UniversalCryptoDecryptor.UncheckedTransformFinalBlock(ReadOnlySpan`1 inputBuffer, Span`1 outputBuffer)
+   at Internal.Cryptography.UniversalCryptoDecryptor.UncheckedTransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   at Internal.Cryptography.UniversalCryptoTransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   at System.Security.Cryptography.CryptoStream.ReadAsyncCore(Memory`1 buffer, CancellationToken cancellationToken, Boolean useAsync)
+   at System.Security.Cryptography.CryptoStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.StreamReader.ReadBuffer()
+   at System.IO.StreamReader.ReadToEnd()
+   at SymmetricEncryption.Decrypt(String encryptedText, String password) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Services\SymmetricEncryption.cs:line 76
+   at Mozaic.PasswordManager.Web.Controllers.UserAccountController.DecryptPassword(Int32 id, String encryptionKey) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Controllers\UserAccountController.cs:line 78
+   at lambda_method229(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2024-10-28 16:35:35.435 +03:00 [ERR] an error occured while creating system user
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Procedure or function CreateSystemUser has too many arguments specified.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.CompleteAsyncExecuteReader(Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalEndExecuteNonQuery(IAsyncResult asyncResult, Boolean isInternal, String endMethod)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryInternal(IAsyncResult asyncResult)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryAsync(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location ---
+   at SystemUserProvider.CreateUser(SystemUser user) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Providers\SystemUserProvider.cs:line 23
+   at Mozaic.PasswordManager.DAL.SystemUserRepository.CreateUser(SystemUser user) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\SystemUserRepository.cs:line 74
+ClientConnectionId:647f5010-fab7-46ff-9ad3-a5e2cd1f17d9
+Error Number:8144,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.SystemUserRepository.CreateUser(SystemUser user) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\SystemUserRepository.cs:line 79
+   at Mozaic.PasswordManager.BL.SystemUserManager.CreateUser(SystemUser user) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\SystemUserManager.cs:line 83
+2024-10-28 16:55:52.873 +03:00 [ERR] The view 'GetUserAccounts' was not found. Searched locations: ["/Views/UserAccount/GetUserAccounts.cshtml","/Views/Shared/GetUserAccounts.cshtml"]
+2024-10-28 16:55:52.967 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The view 'GetUserAccounts' was not found. The following locations were searched:
+/Views/UserAccount/GetUserAccounts.cshtml
+/Views/Shared/GetUserAccounts.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at JwtCookieMiddleware.InvokeAsync(HttpContext context) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Middlewares\JwtCookieMiddleware.cs:line 35
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2024-10-28 17:13:07.055 +03:00 [ERR] Padding is invalid and cannot be removed.
+System.Security.Cryptography.CryptographicException: Padding is invalid and cannot be removed.
+   at Internal.Cryptography.UniversalCryptoDecryptor.GetPaddingLength(ReadOnlySpan`1 block)
+   at Internal.Cryptography.UniversalCryptoDecryptor.UncheckedTransformFinalBlock(ReadOnlySpan`1 inputBuffer, Span`1 outputBuffer)
+   at Internal.Cryptography.UniversalCryptoDecryptor.UncheckedTransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   at Internal.Cryptography.UniversalCryptoTransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   at System.Security.Cryptography.CryptoStream.ReadAsyncCore(Memory`1 buffer, CancellationToken cancellationToken, Boolean useAsync)
+   at System.Security.Cryptography.CryptoStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.StreamReader.ReadBuffer()
+   at System.IO.StreamReader.ReadToEnd()
+   at SymmetricEncryption.Decrypt(String encryptedText, String password) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Services\SymmetricEncryption.cs:line 76
+   at Mozaic.PasswordManager.Web.Controllers.UserAccountController.DecryptPassword(Int32 id, String encryptionKey) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Controllers\UserAccountController.cs:line 78
+   at lambda_method69(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2024-10-28 17:24:55.773 +03:00 [ERR] an error occured while getting User accounts
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE Getting  USER Account
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CreationDate'.
+Invalid column name 'LastModified'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 34
+ClientConnectionId:4ad868ce-2a5f-47d6-b7b2-6e85ddc4d401
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 39
+   at Mozaic.PasswordManager.BL.UserAccountManager.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\UserAccountManager.cs:line 22
+2024-10-28 17:25:22.219 +03:00 [ERR] an error occured while getting User accounts
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE Getting  USER Account
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CreationDate'.
+Invalid column name 'LastModified'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 34
+ClientConnectionId:01250f49-1332-490e-bc67-723876ebbc0d
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 39
+   at Mozaic.PasswordManager.BL.UserAccountManager.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\UserAccountManager.cs:line 22
+2024-10-28 17:26:53.340 +03:00 [ERR] an error occured while getting User accounts
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE Getting  USER Account
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CreationDate'.
+Invalid column name 'LastModified'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 34
+ClientConnectionId:404a669e-3556-4070-a892-64509d9eb50c
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 39
+   at Mozaic.PasswordManager.BL.UserAccountManager.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\UserAccountManager.cs:line 22
+2024-10-28 17:27:15.264 +03:00 [ERR] an error occured while getting User accounts
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE Getting  USER Account
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CreationDate'.
+Invalid column name 'LastModified'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 34
+ClientConnectionId:90154ad5-1903-40c8-a0c7-bd32588c171f
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 39
+   at Mozaic.PasswordManager.BL.UserAccountManager.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\UserAccountManager.cs:line 22
+2024-10-28 17:28:50.831 +03:00 [ERR] an error occured while getting User accounts
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE Getting  USER Account
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CreationDate'.
+Invalid column name 'LastModified'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 34
+ClientConnectionId:d1f46f14-712f-43cf-b0b1-dc6b323e1e58
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 39
+   at Mozaic.PasswordManager.BL.UserAccountManager.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\UserAccountManager.cs:line 22
+2024-10-28 17:29:55.907 +03:00 [ERR] an error occured while getting User accounts
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE Getting  USER Account
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'CreationDate'.
+Invalid column name 'LastModified'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 34
+ClientConnectionId:c46984fb-ade2-4cf9-bacf-558d3d8758a3
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 39
+   at Mozaic.PasswordManager.BL.UserAccountManager.GetUserAccounts(UserAccountSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\UserAccountManager.cs:line 22
+2024-10-28 17:31:20.410 +03:00 [ERR] an error occured while creating User accounts
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE Creating System USER 
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'CreationDate', table 'PasswordManager.dbo.UserAccounts'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:79ffc0a8-8b1d-4c33-b712-4e752947a699
+Error Number:515,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.CreateUserAccount(UserAccount userAccount) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 49
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.UserAccountRepository.CreateUserAccount(UserAccount userAccount) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\UserAccountRepository.cs:line 54
+   at Mozaic.PasswordManager.BL.UserAccountManager.CreateUserAccount(UserAccount userAccount) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\UserAccountManager.cs:line 36
+2024-10-28 17:32:36.011 +03:00 [ERR] Padding is invalid and cannot be removed.
+System.Security.Cryptography.CryptographicException: Padding is invalid and cannot be removed.
+   at Internal.Cryptography.UniversalCryptoDecryptor.GetPaddingLength(ReadOnlySpan`1 block)
+   at Internal.Cryptography.UniversalCryptoDecryptor.UncheckedTransformFinalBlock(ReadOnlySpan`1 inputBuffer, Span`1 outputBuffer)
+   at Internal.Cryptography.UniversalCryptoDecryptor.UncheckedTransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   at Internal.Cryptography.UniversalCryptoTransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   at System.Security.Cryptography.CryptoStream.ReadAsyncCore(Memory`1 buffer, CancellationToken cancellationToken, Boolean useAsync)
+   at System.Security.Cryptography.CryptoStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.StreamReader.ReadBuffer()
+   at System.IO.StreamReader.ReadToEnd()
+   at SymmetricEncryption.Decrypt(String encryptedText, String password) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Services\SymmetricEncryption.cs:line 76
+   at Mozaic.PasswordManager.Web.Controllers.UserAccountController.DecryptPassword(Int32 id, String encryptionKey) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Controllers\UserAccountController.cs:line 78
+   at lambda_method148(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2024-10-28 17:34:31.248 +03:00 [ERR] Padding is invalid and cannot be removed.
+System.Security.Cryptography.CryptographicException: Padding is invalid and cannot be removed.
+   at Internal.Cryptography.UniversalCryptoDecryptor.GetPaddingLength(ReadOnlySpan`1 block)
+   at Internal.Cryptography.UniversalCryptoDecryptor.UncheckedTransformFinalBlock(ReadOnlySpan`1 inputBuffer, Span`1 outputBuffer)
+   at Internal.Cryptography.UniversalCryptoDecryptor.UncheckedTransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   at Internal.Cryptography.UniversalCryptoTransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   at System.Security.Cryptography.CryptoStream.ReadAsyncCore(Memory`1 buffer, CancellationToken cancellationToken, Boolean useAsync)
+   at System.Security.Cryptography.CryptoStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.StreamReader.ReadBuffer()
+   at System.IO.StreamReader.ReadToEnd()
+   at SymmetricEncryption.Decrypt(String encryptedText, String password) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Services\SymmetricEncryption.cs:line 76
+   at Mozaic.PasswordManager.Web.Controllers.UserAccountController.DecryptPassword(Int32 id, String encryptionKey) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Controllers\UserAccountController.cs:line 79
+   at lambda_method134(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)

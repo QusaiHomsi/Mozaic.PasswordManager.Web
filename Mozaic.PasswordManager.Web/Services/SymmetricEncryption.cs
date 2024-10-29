@@ -50,8 +50,8 @@ public static class SymmetricEncryption
     {
         using (var aes = Aes.Create())
         {
-            var key = new byte[32]; 
-            var iv = new byte[16];  
+            var key = new byte[32];
+            var iv = new byte[16];
 
             using (var sha256 = SHA256.Create())
             {
@@ -67,17 +67,25 @@ public static class SymmetricEncryption
 
             using (var decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
             {
-                using (var ms = new MemoryStream(fullCipher, iv.Length, fullCipher.Length - iv.Length))
+                try
                 {
-                    using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    using (var ms = new MemoryStream(fullCipher, iv.Length, fullCipher.Length - iv.Length))
                     {
-                        using (var sr = new StreamReader(cs))
+                        using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
                         {
-                            return sr.ReadToEnd();
+                            using (var sr = new StreamReader(cs))
+                            {
+                                return sr.ReadToEnd();
+                            }
                         }
                     }
+                }
+                catch (CryptographicException)
+                {
+                    throw new Exception("Decryption failed. The password may be incorrect.");
                 }
             }
         }
     }
+
 }

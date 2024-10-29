@@ -40,12 +40,13 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 }
 
                 var password = BCrypt.Net.BCrypt.HashPassword(model.Password);
-                var createdByUserName = GetUsernameFromHeaderOrIdentity();
+                var createdByUserName = Request.Headers["X-Username"].FirstOrDefault();
 
                 var newUser = _mapper.Map<SystemUser>(model);
                 newUser.password = password;
                 newUser.CreationDate = DateTime.UtcNow;
                 newUser.CreatedBy = createdByUserName;
+                Console.WriteLine($"Created By: {createdByUserName}");
 
                 await manager.CreateUser(newUser);
 
