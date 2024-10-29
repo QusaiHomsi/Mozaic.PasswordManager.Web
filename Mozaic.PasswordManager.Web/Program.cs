@@ -5,9 +5,9 @@ using Mozaic.PasswordManager.Web.Models.DBEntities;
 using Mozaic.PasswordManager.Web.Models;
 using System.Text;
 using Mozaic.PasswordManager.DAL;
-using Mozaic.PasswordManager.Web;
 using Serilog;
 using Serilog.Events;
+using Mozaic.PasswordManager.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +29,13 @@ builder.Services.AddControllersWithViews(options =>
     options.Filters.Add<GlobalExceptionFilter>();
 });
 
+// Add configuration services
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
+// Register the RepositoryBase
+builder.Services.AddTransient<RepositoryBase>();
+
+// Configure DbContext with the connection string from appsettings.json
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

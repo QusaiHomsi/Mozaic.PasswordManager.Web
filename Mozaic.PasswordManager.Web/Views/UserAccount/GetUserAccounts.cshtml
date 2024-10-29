@@ -11,10 +11,10 @@
             <div class="ms-2">
                 @Html.DropDownList("pageSize", new List<SelectListItem>
                 {
-                new SelectListItem { Text = "5", Value = "5" , Selected = true },
-                new SelectListItem { Text = "10", Value = "10"},
-                new SelectListItem { Text = "20", Value = "20" },
-                new SelectListItem { Text = "50", Value = "50" }
+                new SelectListItem { Text = "5", Value = "5", Selected = ViewBag.PageSize == 5 },
+                new SelectListItem { Text = "10", Value = "10", Selected = ViewBag.PageSize == 10 },
+                new SelectListItem { Text = "20", Value = "20", Selected = ViewBag.PageSize == 20 },
+                new SelectListItem { Text = "50", Value = "50", Selected = ViewBag.PageSize == 50 }
                 }, new { @class = "form-select", onchange = "this.form.submit();" })
             </div>
             <button class="btn btn-primary" type="submit">
@@ -31,12 +31,19 @@
 <div class="mb-3">
     @if (Model != null)
     {
-        <p>Showing @Model.Count() result(s).</p>
+        <p>Showing @Model.Count() result(s) out of @ViewBag.TotalCount total accounts.</p>
     }
 </div>
 
-<table class="table">
-    <thead>
+<div class="mb-3">
+    <a href="@Url.Action("Create", "UserAccount")" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add User Account
+    </a>
+</div>
+
+<!-- User Accounts Table -->
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-light">
         <tr>
             <th>Account Name</th>
             <th>User Name</th>
@@ -45,11 +52,6 @@
         </tr>
     </thead>
     <tbody>
-        <div class="mb-3">
-            <a href="@Url.Action("Create", "UserAccount")" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> Add Password
-            </a>
-        </div>
         @foreach (var account in Model)
         {
             <tr>
@@ -70,7 +72,7 @@
 </table>
 
 <!-- Pagination -->
-<div class="pagination">
+<div class="pagination justify-content-center">
     @if (ViewBag.TotalCount > ViewBag.PageSize)
     {
         var totalPages = (int)Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize);

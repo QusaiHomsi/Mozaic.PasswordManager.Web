@@ -8,14 +8,14 @@
                 UserName = Context.Request.Query["username"].ToString(),
                 Id = int.TryParse(Context.Request.Query["userId"], out var userId) ? (int?)userId : null,
                 IsAdmin = bool.TryParse(Context.Request.Query["isAdmin"], out var isAdmin) ? (bool?)isAdmin : null,
-                PageSize = int.TryParse(Context.Request.Query["pageSize"], out var pageSize) ? pageSize : 5, 
-                PageNumber = int.TryParse(Context.Request.Query["pageNumber"], out var pageNumber) ? pageNumber : 1 
+                PageSize = int.TryParse(Context.Request.Query["pageSize"], out var pageSize) ? pageSize : 5,
+                PageNumber = int.TryParse(Context.Request.Query["pageNumber"], out var pageNumber) ? pageNumber : 1
             };
 
     var manager = new Mozaic.PasswordManager.BL.SystemUserManager();
     var userList = manager.GetSystemUser(filter);
 
-    int totalRecords = filter.TotalRecords; 
+    int totalRecords = filter.TotalRecords;
     int totalPages = (int)Math.Ceiling((double)totalRecords / filter.PageSize);
 }
 
@@ -43,7 +43,7 @@
                     new SelectListItem { Text = "10", Value = "10"},
                     new SelectListItem { Text = "20", Value = "20" },
                     new SelectListItem { Text = "50", Value = "50" }
-                    }, new { @class = "form-select", onchange = "this.form.submit();" }) 
+                    }, new { @class = "form-select", onchange = "this.form.submit();" })
                 </div>
                 <button class="btn btn-primary" type="submit">
                     <i class="bi bi-search"></i>
@@ -82,7 +82,7 @@
     </div>
 
     <table class="table table-bordered table-hover mt-3">
-        <thead class="thead-light">
+        <thead class="table-light">
             <tr>
                 <th>ID</th>
                 <th>Username</th>
