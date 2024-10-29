@@ -13,7 +13,7 @@ using Mozaic.PasswordManager.BL;
 
 namespace Mozaic.PasswordManager.Web.Controllers
 {
-    [Authorize]
+
     public class LoginController : BaseController
     {
         private readonly JwtConfig _jwtConfig;
@@ -23,14 +23,14 @@ namespace Mozaic.PasswordManager.Web.Controllers
             _jwtConfig = jwtConfig.Value;
         }
 
-        [AllowAnonymous]
+
         [HttpGet]
         public IActionResult Index()
         {
             return View(new SystemUserViewModel());
         }
 
-        [AllowAnonymous]
+
         [HttpPost]
         public IActionResult Index(SystemUserViewModel model)
         {

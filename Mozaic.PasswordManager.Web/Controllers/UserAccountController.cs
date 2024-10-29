@@ -6,6 +6,11 @@ using Mozaic.PasswordManager.Web.Models.ViewModels;
 using Mozaic.PasswordManager.Entities.SearchFilters;
 using Mozaic.PasswordManager.BL;
 using AutoMapper;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Mozaic.PasswordManager.Web.Models.DBEntities;
+using Microsoft.EntityFrameworkCore;
+using System.Drawing.Printing;
 
 namespace Mozaic.PasswordManager.Web.Controllers
 {
@@ -13,14 +18,16 @@ namespace Mozaic.PasswordManager.Web.Controllers
     public class UserAccountController : BaseController
     {
         private readonly IMapper _mapper;
+        private readonly AppDbContext _context;
 
-        public UserAccountController(IMapper mapper)
+        public UserAccountController(IMapper mapper, AppDbContext context)
         {
             _mapper = mapper;
+            _context = context;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPasswords(string accountName, string userName)
+        public IActionResult GetUserAccounts(string accountName, string userName, int pageNumber = 1, int pageSize = 5)
         {
             var manager = new UserAccountManager();
             var filter = new UserAccountSearchFilter
@@ -28,13 +35,26 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 Id = UserInformation.Id,
                 UserName = userName,
                 Name = accountName,
+                PageNumber = pageNumber,
+                PageSize = pageSize // Use the page size passed in the parameters
             };
-           
+
             var userAccounts = manager.GetUserAccounts(filter);
+
+            var totalCount = _context.UserAccounts.Count(ua => ua.UserId == UserInformation.Id &&
+                (string.IsNullOrWhiteSpace(filter.Name) || ua.AccountName.Contains(filter.Name)) &&
+                (string.IsNullOrWhiteSpace(filter.UserName) || ua.UserName.Contains(filter.UserName)));
+
             var viewModel = _mapper.Map<List<UserAccountViewModel>>(userAccounts);
+
+            ViewBag.TotalCount = totalCount;
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.PageSize = pageSize; // Set the current page size in ViewBag
 
             return View(viewModel);
         }
+
+
 
         [HttpGet]
         public IActionResult Create()
@@ -59,11 +79,12 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 var userAccount = _mapper.Map<UserAccount>(model);
                 userAccount.UserId = systemUser.Id;
                 userAccount.Password = encryptedPassword;
+                userAccount.CreationDate = DateTime.UtcNow;
 
                 var userAccountManager = new UserAccountManager();
                 userAccountManager.CreateUserAccount(userAccount);
 
-                return RedirectToAction("GetPasswords");
+                return RedirectToAction("GetUserAccounts");
             }
 
             return View(model);
@@ -79,8 +100,15 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound("User account not found.");
             }
 
-            var decryptedPassword = SymmetricEncryption.Decrypt(userAccount.Password, encryptionKey);
-            return Json(new { decryptedPassword });
+            try
+            {
+                var decryptedPassword = SymmetricEncryption.Decrypt(userAccount.Password, encryptionKey);
+                return Json(new { decryptedPassword });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message });
+            }
         }
     }
 }

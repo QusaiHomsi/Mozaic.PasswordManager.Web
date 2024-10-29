@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Mozaic.PasswordManager.DAL
 {
-    internal class UserAccountRepository:RepositoryBase
+    internal class UserAccountRepository : RepositoryBase
     {
 
         public List<UserAccount> GetUserAccounts(UserAccountSearchFilter filter)
@@ -31,15 +31,17 @@ namespace Mozaic.PasswordManager.DAL
 
             try
             {
-                return list.ToList();
+                // Apply pagination
+                return list.Skip((filter.PageNumber - 1) * filter.PageSize)
+                           .Take(filter.PageSize)
+                           .ToList();
             }
             catch (Exception ex)
             {
-
-                throw new DataProviderException("DATABASE EXCEPTION WHILE OCCURED WHILE Getting  USER Account", ex);
+                throw new DataProviderException("DATABASE EXCEPTION OCCURRED WHILE GETTING USER ACCOUNT", ex);
             }
-            
         }
+
 
         public void CreateUserAccount(UserAccount userAccount)
         {

@@ -19,7 +19,7 @@ namespace Mozaic.PasswordManager.BL
             try
             {
                 var repository = new UserAccountRepository();
-                return repository.GetUserAccounts(filter); 
+                return repository.GetUserAccounts(filter);
             }
             catch (Exception ex)
             {

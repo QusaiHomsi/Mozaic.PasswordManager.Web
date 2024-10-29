@@ -1,0 +1,193 @@
+﻿@model List<Mozaic.PasswordManager.Web.Models.ViewModels.UserAccountViewModel>
+
+<h2>User Accounts</h2>
+
+<!-- Search Form -->
+<div class="mb-3">
+    <form method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search by Account Name" name="accountName" value="@Context.Request.Query["accountName"]" />
+            <input type="text" class="form-control ms-2" placeholder="Search by User Name" name="userName" value="@Context.Request.Query["userName"]" />
+            <div class="ms-2">
+                @Html.DropDownList("pageSize", new List<SelectListItem>
+                {
+                new SelectListItem { Text = "5", Value = "5" , Selected = true },
+                new SelectListItem { Text = "10", Value = "10"},
+                new SelectListItem { Text = "20", Value = "20" },
+                new SelectListItem { Text = "50", Value = "50" }
+                }, new { @class = "form-select", onchange = "this.form.submit();" })
+            </div>
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+            <button type="button" class="btn btn-secondary ms-2" id="clearSearchBtn">
+                <i class="bi bi-x-circle"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Display the number of results found -->
+<div class="mb-3">
+    @if (Model != null)
+    {
+        <p>Showing @Model.Count() result(s).</p>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account Name</th>
+            <th>User Name</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <div class="mb-3">
+            <a href="@Url.Action("Create", "UserAccount")" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Add Password
+            </a>
+        </div>
+        @foreach (var account in Model)
+        {
+            <tr>
+                <td>@account.AccountName</td>
+                <td>@account.UserName</td>
+                <td id="password-@account.Id">****</td>
+                <td>
+                    <button class="btn btn-primary view-password-btn" data-account-id="@account.Id">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn btn-secondary copy-password-btn" data-account-id="@account.Id">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination -->
+<div class="pagination">
+    @if (ViewBag.TotalCount > ViewBag.PageSize)
+    {
+        var totalPages = (int)Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize);
+        for (int i = 1; i <= totalPages; i++)
+        {
+            <a href="@Url.Action("GetUserAccounts", new { accountName = Context.Request.Query["accountName"], userName = Context.Request.Query["userName"], pageNumber = i, pageSize = ViewBag.PageSize })" class="btn @((i == ViewBag.PageNumber) ? "btn-primary" : "btn-light") mx-1">
+                @i
+            </a>
+        }
+    }
+</div>
+
+<!-- Password Decryption Modal -->
+<div class="modal fade" id="decryptModal" tabindex="-1" aria-labelledby="decryptModalLabel" aria-hidden="true" style="z-index: 1051;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="decryptModalLabel">Enter Encryption Key</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="encryptionKey">Encryption Key</label>
+                    <input type="password" id="encryptionKey" class="form-control" />
+                    <input type="hidden" id="accountId" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="decryptPasswordBtn">Decrypt Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" style="z-index: 1051;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="errorMessage">
+                <!-- Error message will be displayed here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.view-password-btn, .copy-password-btn').on('click', function () {
+            var accountId = $(this).data('account-id');
+            $('#accountId').val(accountId);
+            $('#decryptModal').data('action', $(this).hasClass('view-password-btn') ? 'view' : 'copy');
+            $('#decryptModal').modal('show').on('shown.bs.modal', function () {
+                $('.modal-backdrop').remove();
+            });
+        });
+
+        $('#decryptPasswordBtn').on('click', function () {
+            var encryptionKey = $('#encryptionKey').val();
+            var accountId = $('#accountId').val();
+
+            $.ajax({
+                url: '@Url.Action("DecryptPassword", "UserAccount")',
+                type: 'POST',
+                data: {
+                    id: accountId,
+                    encryptionKey: encryptionKey
+                },
+                success: function (response) {
+                    if (response.error) {
+                        $('#errorMessage').text("Wrong Encryption Key ");
+                        $('#errorModal').modal('show');
+                        $('.modal-backdrop').remove();
+                        return;
+                    }
+
+                    var decryptedPassword = response.decryptedPassword;
+                    var action = $('#decryptModal').data('action');
+                    if (action === 'view') {
+                        $('#password-' + accountId).text(decryptedPassword);
+                    } else if (action === 'copy') {
+                        navigator.clipboard.writeText(decryptedPassword).then(function () {
+                            alert('Password copied to clipboard!');
+                        }).catch(function (err) {
+                            alert('Failed to copy password: ' + err);
+                        });
+                    }
+
+                    $('#decryptModal').modal('hide');
+                },
+                error: function () {
+                    $('#errorMessage').text('Failed to decrypt the password.');
+                    $('#errorModal').modal('show');
+                }
+            });
+        });
+
+        $('#clearSearchBtn').on('click', function () {
+            window.location.href = window.location.pathname;
+        });
+
+        $('#decryptModal').on('hidden.bs.modal', function () {
+            $('.modal-backdrop').remove();
+        });
+    });
+
+    function changePageSize(size) {
+        var accountName = '@Context.Request.Query["accountName"]';
+        var userName = '@Context.Request.Query["userName"]';
+        var pageNumber = 1; // Reset to the first page
+        window.location.href = '@Url.Action("GetUserAccounts", "UserAccount")' + '?accountName=' + accountName + '&userName=' + userName + '&pageNumber=' + pageNumber + '&pageSize=' + size;
+    }
+</script>

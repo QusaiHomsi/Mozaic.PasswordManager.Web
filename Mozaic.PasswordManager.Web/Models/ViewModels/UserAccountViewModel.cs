@@ -18,5 +18,6 @@ namespace Mozaic.PasswordManager.Web.Models.ViewModels
         public string Password { get; set; }
 
         public string EncryptionKey { get; set; }
+       
     }
 }
