@@ -31,30 +31,30 @@ namespace Mozaic.PasswordManager.Web.Controllers
             if (ModelState.IsValid)
             {
                 var manager = new SystemUserManager();
-                var existingUser = manager.GetSystemUserByUserName(model.UserName);
-
-                if (existingUser != null)
-                {
-                    TempData["ErrorMessage"] = "Username already exists. Please choose a different one.";
-                    return View("~/Views/Admin/Register.cshtml", model);
-                }
-
+                var existingUser = manager.GetSystemUserByUserName(model.UserName);               
                 var password = BCrypt.Net.BCrypt.HashPassword(model.Password);
-                var createdByUserName = Request.Headers["X-Username"].FirstOrDefault();
+        
 
                 var newUser = _mapper.Map<SystemUser>(model);
                 newUser.password = password;
                 newUser.CreationDate = DateTime.UtcNow;
-                newUser.CreatedBy = createdByUserName;
-                Console.WriteLine($"Created By: {createdByUserName}");
+                newUser.CreatedBy = this.UserInformation.Id; 
+          
 
-                await manager.CreateUser(newUser);
+                var result = await manager.CreateUser(newUser);
+                ViewBag.Message = " User has been created successfully";
+                if (result.Status != SystemTransactionStatus.Success)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("~/Views/Admin/Register.cshtml", model);
+                }
 
-                TempData["SuccessMessage"] = "User successfully created!";
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Users", "SystemUser");
+
             }
 
-            TempData["ErrorMessage"] = "Failed to create user. Please check the form.";
+            ViewBag.Message = "Failed to create user. Please check the form.";
             return View("~/Views/Admin/Register.cshtml", model);
         }
     }

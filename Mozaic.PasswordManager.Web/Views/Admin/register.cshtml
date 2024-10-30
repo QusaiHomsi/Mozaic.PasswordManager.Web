@@ -10,20 +10,14 @@
 
     <h2>Create a User</h2>
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            @TempData["SuccessMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-    else if (TempData["ErrorMessage"] != null)
+    @if (ViewBag.Message != null)
     {
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            @TempData["ErrorMessage"]
+            @ViewBag.Message
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
+   
 
     @* Display validation summary if there are any errors *@
     @if (!ViewData.ModelState.IsValid)
@@ -41,50 +35,38 @@
     <form asp-action="CreateUser" method="post">
         @Html.AntiForgeryToken()
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input class="form-control" asp-for="UserName" id="inputUserName" placeholder="UserName" />
-                    <label for="inputUserName">UserName</label>
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
+        <div class="mb-3">
+            <div class="form-floating">
+                <input class="form-control" asp-for="UserName" id="inputUserName" placeholder="UserName" />
+                <label for="inputUserName">UserName</label>
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input class="form-control" asp-for="Password" id="inputPassword" type="password" placeholder="Create a password" />
-                    <label for="inputPassword">Password</label>
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
+        <div class="mb-3">
+            <div class="form-floating">
+                <input class="form-control" asp-for="Password" id="inputPassword" type="password" placeholder="Create a password" />
+                <label for="inputPassword">Password</label>
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input class="form-control" asp-for="ConfirmPassword" id="inputConfirmPassword" type="password" placeholder="Confirm your password" />
-                    <label for="inputConfirmPassword">Confirm Password</label>
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
+        <div class="mb-3">
+            <div class="form-floating">
+                <input class="form-control" asp-for="ConfirmPassword" id="inputConfirmPassword" type="password" placeholder="Confirm your password" />
+                <label for="inputConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-check form-switch mb-3">
-                    <input class="form-check-input" asp-for="IsAdmin" id="inputIsAdmin" type="checkbox" />
-                    <label class="form-check-label" for="inputIsAdmin">Is Admin?</label>
-                    <span asp-validation-for="IsAdmin" class="text-danger"></span>
-                </div>
-            </div>
+        <div class="mb-3 form-check">
+            <input class="form-check-input" asp-for="IsAdmin" id="inputIsAdmin" type="checkbox" />
+            <label class="form-check-label" for="inputIsAdmin">Is Admin?</label>
+            <span asp-validation-for="IsAdmin" class="text-danger"></span>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-primary">Create User</button>
-            </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Create User</button>
         </div>
     </form>
 </div>

@@ -77,7 +77,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
             {
                 return NotFound();
             }
-
+            
             var viewModel = _mapper.Map<SystemUserViewModel>(user);
             return View(viewModel);
         }
@@ -92,8 +92,10 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 return NotFound();
             }
 
-            user.password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            user.password = BCrypt.Net.BCrypt.HashPassword(newPassword); 
+            user.LastModified = DateTime.UtcNow;
             manager.UpdateUser(user);
+           
 
             return RedirectToAction(nameof(GetUsers));
         }

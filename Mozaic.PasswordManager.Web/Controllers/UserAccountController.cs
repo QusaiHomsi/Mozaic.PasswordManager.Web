@@ -36,7 +36,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
                 UserName = userName,
                 Name = accountName,
                 PageNumber = pageNumber,
-                PageSize = pageSize // Use the page size passed in the parameters
+                PageSize = pageSize 
             };
 
             var userAccounts = manager.GetUserAccounts(filter);
@@ -49,7 +49,7 @@ namespace Mozaic.PasswordManager.Web.Controllers
 
             ViewBag.TotalCount = totalCount;
             ViewBag.PageNumber = pageNumber;
-            ViewBag.PageSize = pageSize; // Set the current page size in ViewBag
+            ViewBag.PageSize = pageSize; 
 
             return View(viewModel);
         }

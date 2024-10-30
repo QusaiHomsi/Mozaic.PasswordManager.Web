@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace Mozaic.PasswordManager.DAL
 {
@@ -12,9 +8,13 @@ namespace Mozaic.PasswordManager.DAL
 
         static DatabaseHelper()
         {
-            //ToD0 : need to read it from Config file
-            ConnectionString = "server=desktop-o738fn0\\mssqlserver1;database=PasswordManager;user=sa;password=11111111;trustservercertificate=true";
-        }
+            var _configuration = new ConfigurationBuilder()
+           .SetBasePath(Directory.GetCurrentDirectory())
+           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+           .Build();
 
+            ConnectionString = _configuration.GetConnectionString("DefaultConnection");
+        }
     }
-}
+    }
+

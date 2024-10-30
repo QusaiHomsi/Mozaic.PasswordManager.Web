@@ -18,18 +18,7 @@ public class JwtCookieMiddleware
         {
             context.Request.Headers.Add("Authorization", $"Bearer {token}");
 
-            var handler = new JwtSecurityTokenHandler();
-            var jwtToken = handler.ReadToken(token) as JwtSecurityToken;
-
-            if (jwtToken != null)
-            {
-                var usernameClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub)?.Value;
-
-                if (!string.IsNullOrEmpty(usernameClaim))
-                {
-                    context.Request.Headers.Add("X-Username", usernameClaim);
-                }
-            }
+            
         }
 
         await _next(context);

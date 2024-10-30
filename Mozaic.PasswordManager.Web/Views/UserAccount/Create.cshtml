@@ -7,30 +7,32 @@
 <h2>Create User Account</h2>
 
 <form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="AccountName"></label>
-        <input asp-for="AccountName" class="form-control" />
+    <div class="mb-3">
+        <label asp-for="AccountName" class="form-label"></label>
+        <input asp-for="AccountName" class="form-control form-control-sm" />
         <span asp-validation-for="AccountName" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName" class="form-control" />
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label"></label>
+        <input asp-for="UserName" class="form-control form-control-sm" />
         <span asp-validation-for="UserName" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" class="form-control" />
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control form-control-sm" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="EncryptionKey">Encryption Key</label>
-        <input asp-for="EncryptionKey" class="form-control" />
+
+    <div class="mb-3">
+        <label asp-for="EncryptionKey" class="form-label"></label>
+        <input asp-for="EncryptionKey" class="form-control form-control-sm" />
         <span asp-validation-for="EncryptionKey" class="text-danger"></span>
     </div>
 
-
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a asp-action="GetPasswords" class="btn btn-secondary">Cancel</a>
+    <div class="d-flex justify-content-between mt-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="GetPasswords" class="btn btn-secondary">Cancel</a>
+    </div>
 </form>

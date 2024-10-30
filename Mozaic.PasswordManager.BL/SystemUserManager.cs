@@ -16,14 +16,12 @@ namespace Mozaic.PasswordManager.BL
         {
             try
             {
-                //int zero = 0;
-                //int result = 100 / zero;
+                
                 var repository = new SystemUserRepository();
                 return repository.GetSystemUser(filter);
             }
             catch (Exception ex)
             {
-                //Log Exception
                 LogingHelper.LogError( "an error occured while getting system user",ex);
                 throw new BusinessException("an error occured while getting system user", ex);
             }
@@ -38,7 +36,6 @@ namespace Mozaic.PasswordManager.BL
             }
             catch (Exception ex)
             {
-                //Log Exception
                 LogingHelper.LogError("an error occured while getting system user by id ", ex);
                 throw new BusinessException("an error occured while getting system user by id", ex);
             }
@@ -53,7 +50,6 @@ namespace Mozaic.PasswordManager.BL
             }
             catch (Exception ex)
             {
-                //Log Exception
                 LogingHelper.LogError("an error occured while updating system user ", ex);
                 throw new BusinessException("an error occured while updating system user", ex);
             }
@@ -68,24 +64,22 @@ namespace Mozaic.PasswordManager.BL
             }
             catch (Exception ex)
             {
-                //Log Exception
                 LogingHelper.LogError("an error occured while updating system user ", ex);
                 throw new BusinessException("an error occured while updating system user", ex);
             }
         }
 
-        public async Task CreateUser(SystemUser user)
+        public async Task<TransactionResult> CreateUser(SystemUser user)
         {
             try
             {
                 
                 var repository = new SystemUserRepository();
-                await repository.CreateUser(user);
+                return await repository.CreateUser(user);
 
             }
             catch (Exception ex)
             {
-                //Log Exception
                 LogingHelper.LogError("an error occured while creating system user", ex);
                 throw new BusinessException("an error occured while creating system user", ex);
             }
