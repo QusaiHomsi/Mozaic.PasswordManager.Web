@@ -4,10 +4,14 @@ using Mozaic.PasswordManager.Entities.SearchFilters;
 using Mozaic.PasswordManager.Entities;
 using System.Data;
 
+
+
+
 internal static class SystemUserProvider
 {
-    internal static async Task CreateUser(SystemUser user)
+    internal static async Task<TransactionResult> CreateUser(SystemUser user)
     {
+        var transactionResult = new TransactionResult { Status = SystemTransactionStatus.Success };
         using (SqlConnection conn = new SqlConnection(DatabaseHelper.ConnectionString))
         {
             using (SqlCommand createuser = new SqlCommand("dbo.CreateSystemUser", conn))
@@ -19,12 +23,33 @@ internal static class SystemUserProvider
                 createuser.Parameters.AddWithValue("@CreatedDate", user.CreationDate);
                 createuser.Parameters.AddWithValue("@IsAdmin", user.IsAdmin); // Pass the IsAdmin property
                 createuser.Parameters.AddWithValue("CreatedBy", user.CreatedBy);
+
+
+                var resultParam = new Microsoft.Data.SqlClient.SqlParameter();
+                resultParam.Direction = ParameterDirection.Output;
+                resultParam.SqlDbType = SqlDbType.VarChar;
+                resultParam.Size = 4;
+                resultParam.ParameterName = "@Result";
+                createuser.Parameters.Add(resultParam);
+
+
                 conn.Open();
                 await createuser.ExecuteNonQueryAsync();
+                string? result = resultParam.Value.ToString();
+                if (result != SystemTransactionStatus.Success)
+                {
+                    transactionResult.Status = result;
+                    switch (transactionResult.Status)
+                    {
+                        case SystemTransactionStatus.ExistingRecord:
+                            transactionResult.Message = "Username already exists. Please choose a different one";
+                            break;
+                    }
+                }
             }
         }
+        return transactionResult;
     }
-
 
     public static List<SystemUser> GetSystemUser(SystemUserSearchFilter filter)
     {

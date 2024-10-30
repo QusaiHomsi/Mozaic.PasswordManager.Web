@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Greeting Page";
-    var username = ViewData["Username"] ?? "User";
+    var username = ViewData["Username"];
+    var roleMessage = ViewData["RoleMessage"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,14 +14,8 @@
 </head>
 <body>
     <div class="text-center">
-        @if (User.IsInRole("Admin"))
-        {
-            <h1>Hello, @username! </h1>
-        }
-        else
-        {
-            <h1>Welcome, @username!</h1>
-        }
+        <h1>@(User.IsInRole("Admin") ? "Hello, Admin" : "Welcome, User") @username!</h1>
+        <p>@roleMessage</p>
         <p>Welcome to Mozaic Password Manager.</p>
     </div>
 </body>

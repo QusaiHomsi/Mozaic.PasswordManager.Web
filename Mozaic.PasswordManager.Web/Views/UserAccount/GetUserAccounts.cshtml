@@ -1,5 +1,5 @@
 ﻿@model List<Mozaic.PasswordManager.Web.Models.ViewModels.UserAccountViewModel>
-
+<div class="container mt-4">
 <h2>User Accounts</h2>
 
 <!-- Search Form -->
@@ -71,19 +71,35 @@
     </tbody>
 </table>
 
-<!-- Pagination -->
-<div class="pagination justify-content-center">
-    @if (ViewBag.TotalCount > ViewBag.PageSize)
-    {
-        var totalPages = (int)Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize);
-        for (int i = 1; i <= totalPages; i++)
+    <!-- Pagination -->
+    <div class="pagination justify-content-center">
+        @if (ViewBag.TotalCount > ViewBag.PageSize)
         {
-            <a href="@Url.Action("GetUserAccounts", new { accountName = Context.Request.Query["accountName"], userName = Context.Request.Query["userName"], pageNumber = i, pageSize = ViewBag.PageSize })" class="btn @((i == ViewBag.PageNumber) ? "btn-primary" : "btn-light") mx-1">
-                @i
-            </a>
+            var totalPages = (int)Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize);
+            <div>
+                <a href="@Url.Action("GetUserAccounts", new { accountName = Context.Request.Query["accountName"], userName = Context.Request.Query["userName"], pageNumber = ViewBag.PageNumber - 1, pageSize = ViewBag.PageSize })"
+                   class="btn @(ViewBag.PageNumber == 1 ? "btn-light disabled" : "btn-light") mx-1"
+                   aria-label="Previous">
+                    &laquo; 
+                </a>
+
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <a href="@Url.Action("GetUserAccounts", new { accountName = Context.Request.Query["accountName"], userName = Context.Request.Query["userName"], pageNumber = i, pageSize = ViewBag.PageSize })"
+                       class="btn @((i == ViewBag.PageNumber) ? "btn-primary" : "btn-light") mx-1">
+                        @i
+                    </a>
+                }
+
+                <a href="@Url.Action("GetUserAccounts", new { accountName = Context.Request.Query["accountName"], userName = Context.Request.Query["userName"], pageNumber = ViewBag.PageNumber + 1, pageSize = ViewBag.PageSize })"
+                   class="btn @(ViewBag.PageNumber == totalPages ? "btn-light disabled" : "btn-light") mx-1"
+                   aria-label="Next">
+                     &raquo;
+                </a>
+            </div>
         }
-    }
-</div>
+    </div>
+
 
 <!-- Password Decryption Modal -->
 <div class="modal fade" id="decryptModal" tabindex="-1" aria-labelledby="decryptModalLabel" aria-hidden="true" style="z-index: 1051;">
@@ -124,6 +140,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script>

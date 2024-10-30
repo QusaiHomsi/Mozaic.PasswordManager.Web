@@ -25,8 +25,7 @@ namespace Mozaic.PasswordManager.Entities
         public DateTime? CreationDate { get; set; }
 
         public DateTime? LastModified { get; set; }
-
-        [StringLength(50)]
-        public string? CreatedBy { get; set; }
+        
+        public int? CreatedBy { get; set; }
     }
 }

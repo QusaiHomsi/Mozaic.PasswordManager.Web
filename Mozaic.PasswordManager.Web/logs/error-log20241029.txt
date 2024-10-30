@@ -153,3 +153,37 @@ System.InvalidOperationException: The model item passed into the ViewDataDiction
    at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
    at JwtCookieMiddleware.InvokeAsync(HttpContext context) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.Web\Middlewares\JwtCookieMiddleware.cs:line 35
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2024-10-29 15:43:23.833 +03:00 [ERR] an error occured while getting system user
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE Getting System USER
+ ---> System.InvalidOperationException: The ConnectionString property has not been initialized.
+   at Microsoft.Data.SqlClient.SqlConnection.PermissionDemand()
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at SystemUserProvider.GetSystemUser(SystemUserSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Providers\SystemUserProvider.cs:line 53
+   at Mozaic.PasswordManager.DAL.SystemUserRepository.GetSystemUser(SystemUserSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\SystemUserRepository.cs:line 21
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.SystemUserRepository.GetSystemUser(SystemUserSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\SystemUserRepository.cs:line 26
+   at Mozaic.PasswordManager.BL.SystemUserManager.GetSystemUser(SystemUserSearchFilter filter) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\SystemUserManager.cs:line 22
+2024-10-29 17:11:52.949 +03:00 [ERR] an error occured while creating system user
+Mozaic.PasswordManager.DAL.Exceptions.DataProviderException: DATABASE EXCEPTION WHILE OCCURED WHILE CREATE USER
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The formal parameter "@Result" was not declared as an OUTPUT parameter, but the actual parameter passed in requested output.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.CompleteAsyncExecuteReader(Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalEndExecuteNonQuery(IAsyncResult asyncResult, Boolean isInternal, String endMethod)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryInternal(IAsyncResult asyncResult)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryAsync(IAsyncResult asyncResult)
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<InternalExecuteNonQueryAsync>b__193_1(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location ---
+   at SystemUserProvider.CreateUser(SystemUser user) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Providers\SystemUserProvider.cs:line 37
+   at Mozaic.PasswordManager.DAL.SystemUserRepository.CreateUser(SystemUser user) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\SystemUserRepository.cs:line 74
+ClientConnectionId:8d38af74-a5f8-4549-9c96-4843c7a0d63f
+Error Number:8162,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Mozaic.PasswordManager.DAL.SystemUserRepository.CreateUser(SystemUser user) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.DAL\Repositories\SystemUserRepository.cs:line 79
+   at Mozaic.PasswordManager.BL.SystemUserManager.CreateUser(SystemUser user) in C:\Users\Qusai\Desktop\Passwordmanager\Final-4.0 - Copy - Copy\Mozaic.PasswordManager.BL\SystemUserManager.cs:line 83

@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 
 namespace Mozaic.PasswordManager.Web.Controllers
 {
@@ -10,25 +8,12 @@ namespace Mozaic.PasswordManager.Web.Controllers
     {
         public IActionResult Hello()
         {
-            var username = GetUsernameFromHeaderOrIdentity();
-            ViewData["Username"] = username;
-
-            var userId = UserInformation?.Id;
-            var userName = UserInformation?.UserName;
-
-           
-            if (IsUserAdmin())
-            {
-                ViewData["RoleMessage"] = "You have administrative privileges.";
-            }
-            else
-            {
-                ViewData["RoleMessage"] = "You are a regular user.";
-            }
+            ViewData["Username"] = UserInformation?.UserName;
+            ViewData["RoleMessage"] = IsUserAdmin()
+                ? "Admin Dashboard You Can Create SystemUsers."
+                : "User Dashboard You Can Add User Accounts.";
 
             return View();
         }
-
-        
     }
 }

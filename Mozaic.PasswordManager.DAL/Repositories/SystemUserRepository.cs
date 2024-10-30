@@ -67,11 +67,11 @@ namespace Mozaic.PasswordManager.DAL
             }
         }
 
-        public async Task CreateUser(SystemUser user)
+        public async Task<TransactionResult> CreateUser(SystemUser user)
         {
             try
             {
-                await SystemUserProvider.CreateUser(user);
+                return await SystemUserProvider.CreateUser(user);
             }
             catch (Exception ex)
             {

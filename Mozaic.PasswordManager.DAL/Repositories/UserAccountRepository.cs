@@ -31,7 +31,6 @@ namespace Mozaic.PasswordManager.DAL
 
             try
             {
-                // Apply pagination
                 return list.Skip((filter.PageNumber - 1) * filter.PageSize)
                            .Take(filter.PageSize)
                            .ToList();
