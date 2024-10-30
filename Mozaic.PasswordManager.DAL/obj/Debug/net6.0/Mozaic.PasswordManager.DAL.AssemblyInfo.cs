@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mozaic.PasswordManager.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ee5075a86de0e61322e10b228d107fad6eb7f9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mozaic.PasswordManager.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mozaic.PasswordManager.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
